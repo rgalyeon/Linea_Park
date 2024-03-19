@@ -15,12 +15,12 @@ With the help of the software you can make a withdrawal from the OKX exchange, b
 5. Transfer ETH (to OKX or another wallet)
 
 **Linea Park Quests**
-Week 1: Game Boom [Main + Bonus], Nidum, Townstory [Main + Bonus]
-Week 2: Abuse World [Main], Pictographs [Main + Bonus], Satoshi Universe, Yooldo Daily Task
-Week 3: Dmail, GameHub [Main + Bonus], Asmatch, BitAvatar, ReadOn, SendingMe
-Week 4: Sarubol, z2048 [Main], Lucky Cat
-Week 5: soon...
-Week 6: soon...
+- Week 1: Game Boom [Main + Bonus], Nidum, Townstory [Main + Bonus]
+- Week 2: Abuse World [Main], Pictographs [Main + Bonus], Satoshi Universe, Yooldo Daily Task
+- Week 3: Dmail, GameHub [Main + Bonus], Asmatch, BitAvatar, ReadOn, SendingMe
+- Week 4: Sarubol, z2048 [Main], Lucky Cat
+- Week 5: soon...
+- Week 6: soon...
 
 ## ⚙️ Installation
 ```bash
