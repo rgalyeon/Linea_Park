@@ -1,0 +1,23 @@
+[{
+    "inputs": [
+      {
+        "internalType": "bytes",
+        "name": "signature",
+        "type": "bytes"
+      },
+      {
+        "internalType": "uint256",
+        "name": "passId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "deadline",
+        "type": "uint256"
+      }
+    ],
+    "name": "createAccountSign",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+}]

@@ -1,0 +1,33 @@
+[{
+    "inputs": [
+      {
+        "internalType": "uint256[]",
+        "name": "_tokenID",
+        "type": "uint256[]"
+      },
+      {
+        "internalType": "uint256[]",
+        "name": "_nftAmountForMint",
+        "type": "uint256[]"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_nonce",
+        "type": "uint256"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "_msgForSign",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "bytes",
+        "name": "_signature",
+        "type": "bytes"
+      }
+    ],
+    "name": "mintFromShadowBatch",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+}]

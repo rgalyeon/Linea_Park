@@ -1,0 +1,9 @@
+[
+  {
+    "inputs": [],
+    "name": "adoptCat",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+]

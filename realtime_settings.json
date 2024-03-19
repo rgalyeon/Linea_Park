@@ -1,0 +1,4 @@
+{
+  "MAX_GWEI": 1.2,
+  "MAX_GWEI_RANGE": [1, 1.1]
+}

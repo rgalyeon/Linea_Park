@@ -1,0 +1,109 @@
+{
+  "ethereum": {
+    "rpc": [
+      "https://rpc.ankr.com/eth",
+      "https://ethereum.publicnode.com",
+      "https://rpc.flashbots.net",
+      "https://1rpc.io/eth",
+      "https://eth.drpc.org"
+    ],
+    "explorer": "https://etherscan.io/tx/",
+    "token": "ETH",
+    "eip1559": true,
+    "chain_id": 1
+  },
+  "arbitrum": {
+    "rpc": [
+      "https://rpc.ankr.com/arbitrum",
+      "https://1rpc.io/arb",
+      "https://arb1.arbitrum.io/rpc"
+    ],
+    "explorer": "https://arbiscan.io/tx/",
+    "token": "ETH",
+    "eip1559": true,
+    "chain_id": 42161
+  },
+  "optimism": {
+    "rpc": [
+      "https://rpc.ankr.com/optimism",
+      "https://optimism.drpc.org",
+      "https://1rpc.io/op"
+    ],
+    "explorer": "https://optimistic.etherscan.io/tx/",
+    "token": "ETH",
+    "eip1559": true,
+    "chain_id": 10
+  },
+  "polygon_zkevm": {
+    "rpc": [
+      "https://rpc.ankr.com/polygon_zkevm",
+      "https://zkevm-rpc.com",
+      "https://1rpc.io/polygon/zkevm"
+    ],
+    "explorer": "https://zkevm.polygonscan.com/tx/",
+    "token": "ETH",
+    "eip1559": false,
+    "chain_id": 1101
+  },
+  "zksync": {
+    "rpc": [
+      "https://rpc.ankr.com/zksync_era"
+    ],
+    "explorer": "https://era.zksync.network/tx/",
+    "token": "ETH",
+    "eip1559": true,
+    "chain_id": 324
+  },
+  "base": {
+    "rpc": [
+      "https://rpc.ankr.com/base",
+      "https://base.llamarpc.com"
+    ],
+    "explorer": "https://basescan.org/tx/",
+    "token": "ETH",
+    "eip1559": true,
+    "chain_id": 8453
+  },
+  "scroll": {
+    "rpc": [
+      "https://rpc.scroll.io",
+      "https://scroll.blockpi.network/v1/rpc/public"
+    ],
+    "explorer": "https://scrollscan.com/tx/",
+    "token": "ETH",
+    "eip1559": false,
+    "chain_id": 534352
+  },
+  "linea": {
+    "rpc": [
+      "https://linea.drpc.org",
+      "https://1rpc.io/linea",
+      "https://rpc.linea.build"
+    ],
+    "explorer": "https://lineascan.build/tx/",
+    "token": "ETH",
+    "eip1559": false,
+    "chain_id": 59144
+  },
+  "zora": {
+    "rpc": [
+      "https://rpc.zora.energy"
+    ],
+    "explorer": "https://zora.superscan.network/tx/",
+    "token": "ETH",
+    "eip1559": false,
+    "chain_id": 7777777
+  },
+  "arbitrum_nova": {
+    "rpc": [
+      "https://rpc.ankr.com/arbitrumnova",
+      "https://arbitrum-nova.publicnode.com",
+      "https://arbitrum-nova.drpc.org",
+      "https://nova.arbitrum.io/rpc"
+    ],
+    "explorer": "https://nova.arbiscan.io/tx/",
+    "token": "ETH",
+    "eip1559": true,
+    "chain_id": 42170
+  }
+}
