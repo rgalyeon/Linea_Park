@@ -60,7 +60,10 @@ def get_module():
 
             Choice(f"Week 4/Task 2 [Main] Sarubol mint", sarubol_mint),
             Choice(f"Week 4/Task 3 [Main] z2048 start game", z2048_game),
-            Choice(f"Week 4/Task 8 [Main] Lucky Cat mint", adopt_cat),
+            Choice(f"Week 4/Task 8 [Main] Lucky Cat mint\n", adopt_cat),
+
+            Choice(f"Week 5/Task 1 [Main] Omnizone mint", omnizone_mint),
+            Choice(f"Week 5/Task 2 [Main] Battlemon mint", battlemon_mint),
 
             Choice(f"Exit", "exit"),
         ],

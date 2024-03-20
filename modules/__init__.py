@@ -9,4 +9,5 @@ from .quests_week1 import Week1
 from .quests_week2 import Week2
 from .quests_week3 import Week3
 from .quests_week4 import Week4
+from .quests_week5 import Week5
 from .linea import Linea

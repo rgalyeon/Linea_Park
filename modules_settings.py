@@ -404,3 +404,23 @@ async def adopt_cat(wallet_info):
     """
     week4_inst = Week4(wallet_info)
     await week4_inst.lucky_cat_mint()
+
+########################################################################
+#                             Week 5                                   #
+########################################################################
+
+
+async def omnizone_mint(wallet_info):
+    """
+    Task 1
+    """
+    week5_inst = Week5(wallet_info)
+    await week5_inst.omnizone_mint()
+
+
+async def battlemon_mint(wallet_info):
+    """
+    Task 2
+    """
+    week5_inst = Week5(wallet_info)
+    await week5_inst.battlemon_mint()
