@@ -1,6 +1,6 @@
 import json
 
-WALLET_DATA_PATH = 'wallet_data copy.xlsx'
+WALLET_DATA_PATH = 'wallet_data.xlsx'
 SHEET_NAME = 'evm'
 ENCRYPTED_DATA_PATH = 'encrypted_data.txt'
 REALTIME_SETTINGS_PATH = 'realtime_settings.json'
