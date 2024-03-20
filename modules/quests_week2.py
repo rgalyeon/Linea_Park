@@ -11,6 +11,7 @@ class Week2(Account):
     def __init__(self, wallet_info) -> None:
         super().__init__(wallet_info=wallet_info, chain="linea")
 
+    @retry
     @check_gas
     async def abuse_world_mint(self):
         logger.info(f"[{self.account_id}][{self.address}] Start Abuse World mint")
@@ -33,6 +34,7 @@ class Week2(Account):
         tnx_hash = await self.send_raw_transaction(signed_tx)
         await self.wait_until_tx_finished(tnx_hash.hex())
 
+    @retry
     @check_gas
     async def pictograph_mint(self):
         logger.info(f"[{self.account_id}][{self.address}] Start Pictographs mint")
@@ -51,6 +53,7 @@ class Week2(Account):
 
         await self.wait_until_tx_finished(tnx_hash.hex())
 
+    @retry
     @check_gas
     async def pictograph_stake(self):
         """
@@ -74,6 +77,7 @@ class Week2(Account):
         tnx_hash = await self.send_raw_transaction(signed_tx)
         await self.wait_until_tx_finished(tnx_hash.hex())
 
+    @retry
     @check_gas
     async def satoshi_universe_mint(self):
         logger.info(f"[{self.account_id}][{self.address}] Start Satoshi Universe mint")
@@ -93,6 +97,7 @@ class Week2(Account):
         tnx_hash = await self.send_raw_transaction(signed_tx)
         await self.wait_until_tx_finished(tnx_hash.hex())
 
+    @retry
     @check_gas
     async def yooldo_daily_task(self):
         logger.info(f"[{self.account_id}][{self.address}] Start Yooldo daily task")

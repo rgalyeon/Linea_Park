@@ -11,6 +11,7 @@ class Week4(Account):
     def __init__(self, wallet_info) -> None:
         super().__init__(wallet_info=wallet_info, chain="linea")
 
+    @retry
     @check_gas
     async def sarubol_mint(self):
         logger.info(f"[{self.account_id}][{self.address}] Start Sarubol mint")
@@ -33,6 +34,7 @@ class Week4(Account):
         tnx_hash = await self.send_raw_transaction(signed_tx)
         await self.wait_until_tx_finished(tnx_hash.hex())
 
+    @retry
     @check_gas
     async def z2048_start_game(self):
         logger.info(f"[{self.account_id}][{self.address}] Start z2048 game")
@@ -48,6 +50,7 @@ class Week4(Account):
         tnx_hash = await self.send_raw_transaction(signed_tx)
         await self.wait_until_tx_finished(tnx_hash.hex())
 
+    @retry
     @check_gas
     async def lucky_cat_mint(self):
         logger.info(f"[{self.account_id}][{self.address}] Start adopt cat")

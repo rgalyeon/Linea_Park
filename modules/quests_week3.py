@@ -11,6 +11,7 @@ class Week3(Account):
     def __init__(self, wallet_info) -> None:
         super().__init__(wallet_info=wallet_info, chain="linea")
 
+    @retry
     @check_gas
     async def asmatch_mint(self):
         logger.info(f"[{self.account_id}][{self.address}] Start AsMatch mint")
@@ -33,6 +34,7 @@ class Week3(Account):
         tnx_hash = await self.send_raw_transaction(signed_tx)
         await self.wait_until_tx_finished(tnx_hash.hex())
 
+    @retry
     @check_gas
     async def bitavatar_checkin(self):
         logger.info(f"[{self.account_id}][{self.address}] Start BitAvatar check-in")
@@ -46,6 +48,7 @@ class Week3(Account):
         txn_hash = await self.send_raw_transaction(signed_txn)
         await self.wait_until_tx_finished(txn_hash.hex())
 
+    @retry
     @check_gas
     async def readon_curate(self):
         logger.info(f"[{self.account_id}][{self.address}] Start ReadOn curate")
@@ -62,6 +65,7 @@ class Week3(Account):
         txn_hash = await self.send_raw_transaction(signed_txn)
         await self.wait_until_tx_finished(txn_hash.hex())
 
+    @retry
     @check_gas
     async def sendingme_send(self, min_amount, max_amount, decimal):
         logger.info(f"[{self.account_id}][{self.address}] Start SendingMe task")

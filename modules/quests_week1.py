@@ -13,6 +13,7 @@ class Week1(Account):
     def __init__(self, wallet_info) -> None:
         super().__init__(wallet_info=wallet_info, chain="linea")
 
+    @retry
     @check_gas
     async def gamer_boom_mint(self):
         logger.info(f"[{self.account_id}][{self.address}] Start Gamer Boom Mint OAT")
@@ -26,6 +27,7 @@ class Week1(Account):
         txn_hash = await self.send_raw_transaction(signed_txn)
         await self.wait_until_tx_finished(txn_hash.hex())
 
+    @retry
     @check_gas
     async def gamer_boom_proof(self):
 
@@ -40,6 +42,7 @@ class Week1(Account):
         txn_hash = await self.send_raw_transaction(signed_txn)
         await self.wait_until_tx_finished(txn_hash.hex())
 
+    @retry
     @check_gas
     async def nidum_mint(self):
         logger.info(f"[{self.account_id}][{self.address}] Start nidum mint")
@@ -58,6 +61,7 @@ class Week1(Account):
         tnx_hash = await self.send_raw_transaction(signed_tx)
         await self.wait_until_tx_finished(tnx_hash.hex())
 
+    @retry
     @check_gas
     async def townstory_mint(self):
         logger.info(f"[{self.account_id}][{self.address}] Start Townstory mint")
@@ -75,6 +79,7 @@ class Week1(Account):
         tnx_hash = await self.send_raw_transaction(signed_tx)
         await self.wait_until_tx_finished(tnx_hash.hex())
 
+    @retry
     @check_gas
     async def travelbag_mint(self):
         logger.info(f"[{self.account_id}][{self.address}] Start Townstory Travelbag mint")
