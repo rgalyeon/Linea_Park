@@ -2,7 +2,7 @@
 # Linea Park 
 Soft for an easy Linea Park campaign walkthrough. Supports multiple OKX accounts, multithreading, encrypts sensitive data, after encryption wallets can be started using only the wallet address (no need to re-enter data).
 
-Full instruction (Russian) - https://teletype.in/@rgalyeon/editor/linea_park
+Full instruction (Russian) - https://teletype.in/@rgalyeon/linea_park
 
 Main features: custom routes, realtime/custom linea gwei, modules for completing most of the tasks from the Linea Park campaign (onchain), smart bridge, ETH collector from networks to OKX
 
