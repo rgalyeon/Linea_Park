@@ -1,6 +1,6 @@
 from loguru import logger
 from utils.gas_checker import check_gas
-from utils.helpers import retry
+from utils.helpers import retry, quest_checker
 from .account import Account
 from utils.nidim_sign import generate_claim_data
 from utils.townstory_sign import get_townstory_signature, get_travelbag_signature
@@ -13,6 +13,7 @@ class Week1(Account):
     def __init__(self, wallet_info) -> None:
         super().__init__(wallet_info=wallet_info, chain="linea")
 
+    @quest_checker
     @retry
     @check_gas
     async def gamer_boom_mint(self):
@@ -27,6 +28,7 @@ class Week1(Account):
         txn_hash = await self.send_raw_transaction(signed_txn)
         await self.wait_until_tx_finished(txn_hash.hex())
 
+    @quest_checker
     @retry
     @check_gas
     async def gamer_boom_proof(self):
@@ -42,6 +44,9 @@ class Week1(Account):
         txn_hash = await self.send_raw_transaction(signed_txn)
         await self.wait_until_tx_finished(txn_hash.hex())
 
+        return True
+
+    @quest_checker
     @retry
     @check_gas
     async def nidum_mint(self):
@@ -61,6 +66,9 @@ class Week1(Account):
         tnx_hash = await self.send_raw_transaction(signed_tx)
         await self.wait_until_tx_finished(tnx_hash.hex())
 
+        return True
+
+    @quest_checker
     @retry
     @check_gas
     async def townstory_mint(self):
@@ -79,6 +87,9 @@ class Week1(Account):
         tnx_hash = await self.send_raw_transaction(signed_tx)
         await self.wait_until_tx_finished(tnx_hash.hex())
 
+        return True
+
+    @quest_checker
     @retry
     @check_gas
     async def travelbag_mint(self):
@@ -95,3 +106,5 @@ class Week1(Account):
         signed_tx = await self.sign(transaction)
         tnx_hash = await self.send_raw_transaction(signed_tx)
         await self.wait_until_tx_finished(tnx_hash.hex())
+
+        return True

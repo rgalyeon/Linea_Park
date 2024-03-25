@@ -4,7 +4,7 @@ from hashlib import sha256
 from loguru import logger
 from config import DMAIL_CONTRACT, DMAIL_ABI
 from utils.gas_checker import check_gas
-from utils.helpers import retry
+from utils.helpers import retry, quest_checker
 from .account import Account
 
 
@@ -14,6 +14,7 @@ class Dmail(Account):
 
         self.contract = self.get_contract(DMAIL_CONTRACT, DMAIL_ABI)
 
+    @quest_checker
     @retry
     @check_gas
     async def send_mail(self):
@@ -34,3 +35,5 @@ class Dmail(Account):
         txn_hash = await self.send_raw_transaction(signed_txn)
 
         await self.wait_until_tx_finished(txn_hash.hex())
+
+        return True

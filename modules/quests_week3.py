@@ -2,7 +2,7 @@ import random
 
 from loguru import logger
 from utils.gas_checker import check_gas
-from utils.helpers import retry
+from utils.helpers import retry, quest_checker
 from .account import Account
 from config import ALIENSWAP_ABI, ASMATCH_CONTRACT, READON_CONTRACT, READON_ABI
 
@@ -11,6 +11,7 @@ class Week3(Account):
     def __init__(self, wallet_info) -> None:
         super().__init__(wallet_info=wallet_info, chain="linea")
 
+    @quest_checker
     @retry
     @check_gas
     async def asmatch_mint(self):
@@ -34,6 +35,9 @@ class Week3(Account):
         tnx_hash = await self.send_raw_transaction(signed_tx)
         await self.wait_until_tx_finished(tnx_hash.hex())
 
+        return True
+
+    @quest_checker
     @retry
     @check_gas
     async def bitavatar_checkin(self):
@@ -48,6 +52,9 @@ class Week3(Account):
         txn_hash = await self.send_raw_transaction(signed_txn)
         await self.wait_until_tx_finished(txn_hash.hex())
 
+        return True
+
+    @quest_checker
     @retry
     @check_gas
     async def readon_curate(self):
@@ -65,6 +72,9 @@ class Week3(Account):
         txn_hash = await self.send_raw_transaction(signed_txn)
         await self.wait_until_tx_finished(txn_hash.hex())
 
+        return True
+
+    @quest_checker
     @retry
     @check_gas
     async def sendingme_send(self, min_amount, max_amount, decimal):
@@ -86,3 +96,4 @@ class Week3(Account):
         txn_hash = await self.send_raw_transaction(signed_txn)
         await self.wait_until_tx_finished(txn_hash.hex())
 
+        return True

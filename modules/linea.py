@@ -1,7 +1,7 @@
 from loguru import logger
 
 from utils.gas_checker import check_gas
-from utils.helpers import retry
+from utils.helpers import retry, quest_checker
 from .transfer import Transfer
 
 from config import (
@@ -14,6 +14,7 @@ class Linea(Transfer):
     def __init__(self, wallet_info) -> None:
         super().__init__(wallet_info=wallet_info)
 
+    @quest_checker
     @retry
     @check_gas
     async def wrap_eth(
@@ -48,6 +49,8 @@ class Linea(Transfer):
         txn_hash = await self.send_raw_transaction(signed_txn)
 
         await self.wait_until_tx_finished(txn_hash.hex())
+
+        return True
 
     @retry
     @check_gas

@@ -2,7 +2,7 @@ import random
 
 from loguru import logger
 from utils.gas_checker import check_gas
-from utils.helpers import retry
+from utils.helpers import retry, quest_checker
 from .account import Account
 from config import ALIENSWAP_ABI, SARUBOL_CONTRACT, ZYPHER_CONTRACT, LUCKY_CAT_ABI, LUCKY_CAT_CONTRACT
 
@@ -11,6 +11,7 @@ class Week4(Account):
     def __init__(self, wallet_info) -> None:
         super().__init__(wallet_info=wallet_info, chain="linea")
 
+    @quest_checker
     @retry
     @check_gas
     async def sarubol_mint(self):
@@ -34,6 +35,9 @@ class Week4(Account):
         tnx_hash = await self.send_raw_transaction(signed_tx)
         await self.wait_until_tx_finished(tnx_hash.hex())
 
+        return True
+
+    @quest_checker
     @retry
     @check_gas
     async def z2048_start_game(self):
@@ -50,6 +54,9 @@ class Week4(Account):
         tnx_hash = await self.send_raw_transaction(signed_tx)
         await self.wait_until_tx_finished(tnx_hash.hex())
 
+        return True
+
+    @quest_checker
     @retry
     @check_gas
     async def lucky_cat_mint(self):
@@ -63,3 +70,5 @@ class Week4(Account):
         signed_tx = await self.sign(transaction)
         tnx_hash = await self.send_raw_transaction(signed_tx)
         await self.wait_until_tx_finished(tnx_hash.hex())
+
+        return True

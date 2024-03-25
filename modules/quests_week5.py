@@ -2,15 +2,17 @@ import random
 
 from loguru import logger
 from utils.gas_checker import check_gas
-from utils.helpers import retry
+from utils.helpers import retry, quest_checker
 from .account import Account
-from config import ALIENSWAP_ABI, OMNIZONE_CONTRACT, BATTLEMON_CONTRACT, UNFETTERED_CONTRACT
+from config import ALIENSWAP_ABI, OMNIZONE_CONTRACT, BATTLEMON_CONTRACT, NOUNS_CONTRACT, NOUNS_ABI
+from eth_abi import encode
 
 
 class Week5(Account):
     def __init__(self, wallet_info) -> None:
         super().__init__(wallet_info=wallet_info, chain="linea")
 
+    @quest_checker
     @retry
     @check_gas
     async def omnizone_mint(self):
@@ -30,6 +32,9 @@ class Week5(Account):
         txn_hash = await self.send_raw_transaction(signed_txn)
         await self.wait_until_tx_finished(txn_hash.hex())
 
+        return True
+
+    @quest_checker
     @retry
     @check_gas
     async def battlemon_mint(self):
@@ -48,3 +53,32 @@ class Week5(Account):
         signed_tx = await self.sign(tx_data)
         tnx_hash = await self.send_raw_transaction(signed_tx)
         await self.wait_until_tx_finished(tnx_hash.hex())
+
+        return True
+
+    @retry
+    @check_gas
+    async def play_nouns(self):
+        logger.info(f"[{self.account_id}][{self.address}] Start Play Nouns")
+        contract = self.get_contract(NOUNS_CONTRACT, NOUNS_ABI)
+        _currency = '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE'
+        _tokenId = 0
+        _quantity = 1
+        _pricePerToken = 0
+
+        tx_data = await self.get_tx_data()
+        transaction = await contract.functions.claim(
+            self.address,
+            _tokenId,
+            _quantity,
+            _currency,
+            _pricePerToken,
+            [[encode(['bytes32'], [b''])], 2 ** 256 - 1, 0, _currency],
+            b''
+        ).build_transaction(tx_data)
+
+        signed_tx = await self.sign(transaction)
+        tnx_hash = await self.send_raw_transaction(signed_tx)
+        await self.wait_until_tx_finished(tnx_hash.hex())
+
+        return True

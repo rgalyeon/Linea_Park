@@ -1,6 +1,6 @@
 from loguru import logger
 from utils.gas_checker import check_gas
-from utils.helpers import retry
+from utils.helpers import retry, quest_checker
 from .account import Account
 from config import ABUSE_WORLD_CONTRACT, ALIENSWAP_ABI,\
     PICTOGRAPHS_CONTRACT, PICTOGRAPHS_ABI,\
@@ -11,6 +11,7 @@ class Week2(Account):
     def __init__(self, wallet_info) -> None:
         super().__init__(wallet_info=wallet_info, chain="linea")
 
+    @quest_checker
     @retry
     @check_gas
     async def abuse_world_mint(self):
@@ -34,6 +35,9 @@ class Week2(Account):
         tnx_hash = await self.send_raw_transaction(signed_tx)
         await self.wait_until_tx_finished(tnx_hash.hex())
 
+        return True
+
+    @quest_checker
     @retry
     @check_gas
     async def pictograph_mint(self):
@@ -53,6 +57,9 @@ class Week2(Account):
 
         await self.wait_until_tx_finished(tnx_hash.hex())
 
+        return True
+
+    @quest_checker
     @retry
     @check_gas
     async def pictograph_stake(self):
@@ -77,6 +84,9 @@ class Week2(Account):
         tnx_hash = await self.send_raw_transaction(signed_tx)
         await self.wait_until_tx_finished(tnx_hash.hex())
 
+        return True
+
+    @quest_checker
     @retry
     @check_gas
     async def satoshi_universe_mint(self):
@@ -97,6 +107,9 @@ class Week2(Account):
         tnx_hash = await self.send_raw_transaction(signed_tx)
         await self.wait_until_tx_finished(tnx_hash.hex())
 
+        return True
+
+    @quest_checker
     @retry
     @check_gas
     async def yooldo_daily_task(self):
@@ -113,3 +126,4 @@ class Week2(Account):
         txn_hash = await self.send_raw_transaction(signed_txn)
         await self.wait_until_tx_finished(txn_hash.hex())
 
+        return True

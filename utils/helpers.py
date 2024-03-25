@@ -2,9 +2,15 @@ from loguru import logger
 from settings import RETRY_COUNT
 from utils.sleeping import sleep
 import traceback
+import pandas as pd
+from config import PROGRESS_PATH
+from settings import CHECK_QUESTS_PROGRESS
+from main import transaction_lock
+from functools import wraps
 
 
 def retry(func):
+    @wraps(func)
     async def wrapper(*args, **kwargs):
         retries = 0
         while retries <= RETRY_COUNT:
@@ -28,3 +34,33 @@ def remove_wallet(private_key: str):
         for line in lines:
             if private_key not in line:
                 file.write(line)
+
+
+def quest_checker(func):
+    @wraps(func)
+    async def wrapper(*args, **kwargs):
+        if CHECK_QUESTS_PROGRESS:
+            with transaction_lock:
+                progress = pd.read_excel(PROGRESS_PATH, index_col=0)
+            account = args[0]
+            module_name = func.__name__
+            wallet = account.address.lower()
+
+            try:
+                status = progress.loc[wallet, module_name]
+            except KeyError:
+                logger.error(f"[{account.account_id}][{account.address}] Progress not found")
+                from traceback import print_exc
+                print_exc()
+                status = False
+            if not status:
+                result = await func(*args, **kwargs)
+                if result:
+                    with transaction_lock:
+                        progress.loc[wallet, module_name] = True
+                        progress.fillna(False).to_excel(PROGRESS_PATH)
+                return result
+            else:
+                logger.warning(f"[{account.account_id}][{account.address}] Module {module_name} already complete. "
+                               f"Skip module")
+    return wrapper

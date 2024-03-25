@@ -4,6 +4,7 @@ WALLET_DATA_PATH = 'wallet_data.xlsx'
 SHEET_NAME = 'evm'
 ENCRYPTED_DATA_PATH = 'encrypted_data.txt'
 REALTIME_SETTINGS_PATH = 'realtime_settings.json'
+PROGRESS_PATH = 'progress.xlsx'
 
 with open('data/rpc.json') as file:
     RPC = json.load(file)
@@ -44,6 +45,9 @@ with open('data/abi/readon/abi.json', 'r') as file:
 with open('data/abi/lucky_cat/abi.json', 'r') as file:
     LUCKY_CAT_ABI = json.load(file)
 
+with open('data/abi/nouns/abi.json', 'r') as file:
+    NOUNS_ABI = json.load(file)
+
 
 ZERO_ADDRESS = "0x0000000000000000000000000000000000000000"
 
@@ -62,6 +66,7 @@ LUCKY_CAT_CONTRACT = "0xc577018b3518cD7763D143d7699B280d6E50fdb6"
 OMNIZONE_CONTRACT = "0x7136Abb0fa3d88E4B4D4eE58FC1dfb8506bb7De7"
 BATTLEMON_CONTRACT = "0x578705C60609C9f02d8B7c1d83825E2F031e35AA"
 UNFETTERED_CONTRACT = "0x2dC9D44eC35d5DEfD146e5fD718eE3277dfaCF0A"
+NOUNS_CONTRACT = "0x9DF3c2C75a92069B99c73bd386961631F143727C"
 
 
 LINEA_TOKENS = {
@@ -71,9 +76,9 @@ LINEA_TOKENS = {
 }
 
 
-LINEASCAN_URL = 'https://api.lineascan.com/api'
+LINEASCAN_URL = 'https://api.lineascan.build/api'
 
-LINEA_API_KEY = ''
+LINEA_API_KEYS = ['']  # ['api_key1', 'api_key2'], api keys from https://lineascan.build
 
 CHAINS_OKX = {
     'linea': 'Linea',

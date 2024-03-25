@@ -15,12 +15,14 @@ from settings import (
     QUANTITY_THREADS,
     THREAD_SLEEP_FROM,
     THREAD_SLEEP_TO,
-    SAVE_LOGS
+    SAVE_LOGS,
+    CHECK_QUESTS_PROGRESS
 )
 from modules_settings import *
 from utils.sleeping import sleep
 from utils.logs_handler import filter_out_utils
 from utils.password_handler import get_wallet_data
+from utils.progress_checker import LineaScan
 from itertools import count
 import threading
 from config import HEADER
@@ -38,6 +40,7 @@ def get_module():
             Choice(f"{next(counter)}) Transfer to OKX", transfer_to_okx),
             Choice(f"{next(counter)}) Bridge Orbiter", bridge_orbiter),
             Choice(f"{next(counter)}) Use custom routes", custom_routes),
+            Choice(f"{next(counter)}) Quest progress checker (need proxy)", progress_check),
             Choice(f"{next(counter)}) Exit\n", "exit"),
 
             Choice(f"Week 1/Task 2 [Main] Game Boom Proof", game_boom_proof),
@@ -64,6 +67,7 @@ def get_module():
 
             Choice(f"Week 5/Task 1 [Main] Omnizone mint", omnizone_mint),
             Choice(f"Week 5/Task 2 [Main] Battlemon mint", battlemon_mint),
+            Choice(f"Week 5/Task 3 [Main] Play Nouns", play_nouns),
 
             Choice(f"Exit", "exit"),
         ],
@@ -103,8 +107,14 @@ def main(module):
 
     wallets_data = get_wallets()
 
+    if module == progress_check:
+        return progress_check(wallets_data)
+
     if RANDOM_WALLET:
         random.shuffle(wallets_data)
+
+    if CHECK_QUESTS_PROGRESS:
+        LineaScan(wallets_data).get_wallet_progress()
 
     with ThreadPoolExecutor(max_workers=QUANTITY_THREADS) as executor:
         for _, wallet_data in enumerate(wallets_data, start=1):

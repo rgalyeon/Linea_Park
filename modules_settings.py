@@ -1,5 +1,5 @@
 import asyncio
-
+from utils.progress_checker import LineaScan
 from modules import *
 
 
@@ -22,10 +22,10 @@ async def withdraw_okx(wallet_info):
                      skip the withdrawal
     """
     token = 'ETH'
-    chains = ['arbitrum', 'zksync', 'linea', 'base', 'optimism']
+    chains = ['linea']
 
-    min_amount = 0.0070
-    max_amount = 0.0072
+    min_amount = 0.0031
+    max_amount = 0.004
 
     terminate = False
 
@@ -98,8 +98,8 @@ async def bridge_orbiter(wallet_info):
     sleep_between_transfers - only if bridge_from_all_chains=True. sleep between few transfers
     """
 
-    from_chains = ["arbitrum", "optimism", "base", "linea"]
-    to_chain = "scroll"
+    from_chains = ["arbitrum", "optimism", "base"]
+    to_chain = "linea"
 
     min_amount = 0.005
     max_amount = 0.0051
@@ -142,6 +142,7 @@ async def wrap_eth(wallet_info):
     all_amount = False
     min_percent = 2
     max_percent = 5
+
     linea_inst = Linea(wallet_info)
     await linea_inst.wrap_eth(min_amount, max_amount, decimal, all_amount, min_percent, max_percent)
 
@@ -192,6 +193,11 @@ async def custom_routes(wallet_info):
         - z2048_game (Task 3, main)
         - adopt_cat (Task 8, main)
 
+    Week 5 modules:
+        - omnizone_mint (Task 1, main)
+        - battlemon_mint(Task 2, main)
+        - play_nouns (Task 3, main)
+
     ______________________________________________________
     Disclaimer - You can add modules to [] to select random ones,
     example [module_1, module_2, [module_3, module_4], module 5]
@@ -202,12 +208,16 @@ async def custom_routes(wallet_info):
     You can also specify () to perform the desired action a certain number of times
     example (send_mail, 1, 10) run this module 1 to 10 times
     """
-    use_modules = [game_boom_proof, nidum_mint, townstory_mint]
+    use_modules = [game_boom_proof, game_boom_mint, townstory_mint, townstory_travelbag,  # week 1
+                   abuse_world_mint, pictographs_mint, satoshi_universe_mint, yooldo_daily_task,  # week 2
+                   send_mail, wrap_eth, asmatch_mint, bitavatar_checkin, readon_curate, sendingme_task,  # week 3
+                   sarubol_mint, z2048_game, adopt_cat,  # week 4
+                   omnizone_mint, battlemon_mint, play_nouns]  # week 5
 
     sleep_from = 300
     sleep_to = 500
 
-    random_module = False
+    random_module = True
 
     routes_inst = Routes(wallet_info)
     await routes_inst.start(use_modules, sleep_from, sleep_to, random_module)
@@ -424,3 +434,22 @@ async def battlemon_mint(wallet_info):
     """
     week5_inst = Week5(wallet_info)
     await week5_inst.battlemon_mint()
+
+
+async def play_nouns(wallet_info):
+    """
+    Task 3
+    """
+    week5_inst = Week5(wallet_info)
+    await week5_inst.play_nouns()
+
+########################################################################
+#                             Checker                                  #
+########################################################################
+
+
+def progress_check(wallets_data):
+
+    replace = True
+
+    LineaScan(wallets_data).get_wallet_progress(replace)
