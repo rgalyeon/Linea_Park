@@ -70,6 +70,10 @@ class Routes(Account):
 
         if random_module:
             random.shuffle(run_modules)
+            for i, func in enumerate(run_modules):
+                if func.__name__ == 'withdraw_okx':
+                    run_modules.insert(0, run_modules.pop(i))
+                    break
 
         for module in run_modules:
             if module is None:
@@ -77,7 +81,6 @@ class Routes(Account):
                 status = True
             else:
                 status = await module(self.wallet_info)
-                print(status)
             if status != -1:
                 await sleep(sleep_from, sleep_to)
 

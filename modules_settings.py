@@ -198,6 +198,7 @@ async def custom_routes(wallet_info):
         - battlemon_mint(Task 2, main)
         - play_nouns (Task 3, main)
 
+    If random_module = True and withdraw_okx in use_modules, withdraw_okx will always be executed first
     ______________________________________________________
     Disclaimer - You can add modules to [] to select random ones,
     example [module_1, module_2, [module_3, module_4], module 5]
@@ -209,7 +210,7 @@ async def custom_routes(wallet_info):
     example (send_mail, 1, 10) run this module 1 to 10 times
     """
     use_modules = [
-        game_boom_proof, game_boom_mint, townstory_mint, townstory_travelbag,  # week 1
+        withdraw_okx, game_boom_proof, game_boom_mint, townstory_mint, townstory_travelbag,  # week 1
         abuse_world_mint, pictographs_mint, pictographs_stake, satoshi_universe_mint, yooldo_daily_task,  # week 2
         send_mail, wrap_eth, asmatch_mint, bitavatar_checkin, readon_curate, sendingme_task,  # week 3
         sarubol_mint, z2048_game, adopt_cat,  # week 4
@@ -219,7 +220,7 @@ async def custom_routes(wallet_info):
     sleep_from = 120
     sleep_to = 310
 
-    random_module = False
+    random_module = True
 
     routes_inst = Routes(wallet_info)
     return await routes_inst.start(use_modules, sleep_from, sleep_to, random_module)
