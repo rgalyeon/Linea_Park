@@ -83,12 +83,7 @@ def get_claim_data(wallet, bearer, proxies):
     data = {
         "contract": "0x34Be5b8C30eE4fDe069DC878989686aBE9884470",
         "user": f"{wallet.lower()}",
-        "tokensData": [
-            {
-                "tokenId": 9,
-                "amount": "1"
-            }
-        ]
+        "tokensData": [{"tokenId": 9, "amount": "1"}]
     }
 
     json_data = dumps(data)

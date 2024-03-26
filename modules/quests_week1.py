@@ -57,7 +57,7 @@ class Week1(Account):
         message = claim_data['message']
         signature = claim_data['signature']
 
-        tx_data = self.get_tx_data()
+        tx_data = await self.get_tx_data()
         transaction = await contract.functions.mintFromShadowBatch(
             [9], [1], 0, message, signature
         ).build_transaction(tx_data)
