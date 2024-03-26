@@ -2,6 +2,8 @@
 # Linea Park 
 Soft for an easy Linea Park campaign walkthrough. Supports multiple OKX accounts, multithreading, encrypts sensitive data, after encryption wallets can be started using only the wallet address (no need to re-enter data).
 
+Full instruction (Russian) - https://teletype.in/@rgalyeon/linea_park
+
 Main features: custom routes, realtime/custom linea gwei, modules for completing most of the tasks from the Linea Park campaign (onchain), smart bridge, ETH collector from networks to OKX
 
 ## 🗂️ Description
@@ -12,7 +14,8 @@ With the help of the software you can make a withdrawal from the OKX exchange, b
 2. `withdraw_okx` - module for withdrawing tokens from the OKX. Supports checking the balance on the wallet to avoid withdrawing money in case it is already in the chain
 3. `custom_routes` - module for customizing your own route (radnomize transactions)
 4. Orbiter bridge
-5. Transfer ETH (to OKX or another wallet)
+5. `Progress Checker` - The software checks the progress of quests. performs only those quests that have not been done yet
+6. Transfer ETH (to OKX or another wallet)
 
 **Linea Park Quests**
 - Week 1: Game Boom [Main + Bonus], Nidum, Townstory [Main + Bonus]
