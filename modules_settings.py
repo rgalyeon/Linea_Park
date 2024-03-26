@@ -24,19 +24,19 @@ async def withdraw_okx(wallet_info):
     token = 'ETH'
     chains = ['linea']
 
-    min_amount = 0.0031
-    max_amount = 0.004
+    min_amount = 0.004
+    max_amount = 0.006
 
     terminate = False
 
-    skip_enabled = False
-    skip_threshold = 0.00327
+    skip_enabled = True
+    skip_threshold = 0.003
 
     wait_unlimited_time = False
     sleep_between_attempts = [10, 20]  # min, max
 
     okx_exchange = Okx(wallet_info, chains)
-    await okx_exchange.okx_withdraw(
+    return await okx_exchange.okx_withdraw(
         min_amount, max_amount, token, terminate, skip_enabled, skip_threshold,
         wait_unlimited_time, sleep_between_attempts
     )
@@ -61,7 +61,7 @@ async def transfer_to_okx(wallet_info):
     sleep_between_transfers = [120, 350]
 
     transfer_inst = Transfer(wallet_info)
-    await transfer_inst.transfer_eth(
+    return await transfer_inst.transfer_eth(
         from_chains, min_amount, max_amount, decimal, all_amount, min_percent,
         max_percent, save_funds, False, 0, min_required_amount,
         bridge_from_all_chains=bridge_from_all_chains,
@@ -119,7 +119,7 @@ async def bridge_orbiter(wallet_info):
     sleep_between_transfers = [120, 300]
 
     orbiter_inst = Orbiter(wallet_info)
-    await orbiter_inst.transfer_eth(
+    return await orbiter_inst.transfer_eth(
         from_chains, min_amount, max_amount, decimal, all_amount, min_percent, max_percent, save_funds,
         check_balance_on_dest, check_amount, min_required_amount, to_chain, bridge_from_all_chains,
         sleep_between_transfers=sleep_between_transfers
@@ -144,7 +144,7 @@ async def wrap_eth(wallet_info):
     max_percent = 5
 
     linea_inst = Linea(wallet_info)
-    await linea_inst.wrap_eth(min_amount, max_amount, decimal, all_amount, min_percent, max_percent)
+    return await linea_inst.wrap_eth(min_amount, max_amount, decimal, all_amount, min_percent, max_percent)
 
 
 async def sendingme_task(wallet_info):
@@ -156,7 +156,7 @@ async def sendingme_task(wallet_info):
     decimal = 8
 
     week3_inst = Week3(wallet_info)
-    await week3_inst.sendingme_send(min_amount, max_amount, decimal)
+    return await week3_inst.sendingme_send(min_amount, max_amount, decimal)
 
 
 ########################################################################
@@ -208,19 +208,21 @@ async def custom_routes(wallet_info):
     You can also specify () to perform the desired action a certain number of times
     example (send_mail, 1, 10) run this module 1 to 10 times
     """
-    use_modules = [game_boom_proof, game_boom_mint, townstory_mint, townstory_travelbag,  # week 1
-                   abuse_world_mint, pictographs_mint, satoshi_universe_mint, yooldo_daily_task,  # week 2
-                   send_mail, wrap_eth, asmatch_mint, bitavatar_checkin, readon_curate, sendingme_task,  # week 3
-                   sarubol_mint, z2048_game, adopt_cat,  # week 4
-                   omnizone_mint, battlemon_mint, play_nouns]  # week 5
+    use_modules = [
+        game_boom_proof, game_boom_mint, townstory_mint, townstory_travelbag,  # week 1
+        abuse_world_mint, pictographs_mint, pictographs_stake, satoshi_universe_mint, yooldo_daily_task,  # week 2
+        send_mail, wrap_eth, asmatch_mint, bitavatar_checkin, readon_curate, sendingme_task,  # week 3
+        sarubol_mint, z2048_game, adopt_cat,  # week 4
+        omnizone_mint, battlemon_mint, play_nouns  # week 5
+    ]
 
-    sleep_from = 300
-    sleep_to = 500
+    sleep_from = 120
+    sleep_to = 310
 
-    random_module = True
+    random_module = False
 
     routes_inst = Routes(wallet_info)
-    await routes_inst.start(use_modules, sleep_from, sleep_to, random_module)
+    return await routes_inst.start(use_modules, sleep_from, sleep_to, random_module)
 
 
 async def automatic_routes(wallet_info):
@@ -246,7 +248,8 @@ async def automatic_routes(wallet_info):
     expensive_modules = []
 
     routes_inst = Routes(wallet_info)
-    await routes_inst.start_automatic(transaction_count, cheap_ratio,
+    return await routes_inst.start_automatic(
+                                      transaction_count, cheap_ratio,
                                       sleep_from, sleep_to,
                                       cheap_modules, expensive_modules,
                                       use_none)
@@ -264,7 +267,7 @@ async def game_boom_mint(wallet_info):
     """
 
     week1_inst = Week1(wallet_info)
-    await week1_inst.gamer_boom_mint()
+    return await week1_inst.gamer_boom_mint()
 
 
 async def game_boom_proof(wallet_info):
@@ -272,7 +275,7 @@ async def game_boom_proof(wallet_info):
     Task 2, part 1
     """
     week1_inst = Week1(wallet_info)
-    await week1_inst.gamer_boom_proof()
+    return await week1_inst.gamer_boom_proof()
 
 
 async def nidum_mint(wallet_info):
@@ -280,7 +283,7 @@ async def nidum_mint(wallet_info):
     Task 3. DOESN'T WORK
     """
     week1_inst = Week1(wallet_info)
-    await week1_inst.nidum_mint()
+    return await week1_inst.nidum_mint()
 
 
 async def townstory_mint(wallet_info):
@@ -288,7 +291,7 @@ async def townstory_mint(wallet_info):
     Task 4.1
     """
     week1_inst = Week1(wallet_info)
-    await week1_inst.townstory_mint()
+    return await week1_inst.townstory_mint()
 
 
 async def townstory_travelbag(wallet_info):
@@ -297,7 +300,7 @@ async def townstory_travelbag(wallet_info):
     """
 
     week1_inst = Week1(wallet_info)
-    await week1_inst.travelbag_mint()
+    return await week1_inst.travelbag_mint()
 
 ########################################################################
 #                             Week 2                                   #
@@ -310,7 +313,7 @@ async def abuse_world_mint(wallet_info):
     """
 
     week2_inst = Week2(wallet_info)
-    await week2_inst.abuse_world_mint()
+    return await week2_inst.abuse_world_mint()
 
 
 async def pictographs_mint(wallet_info):
@@ -319,7 +322,7 @@ async def pictographs_mint(wallet_info):
     """
 
     week2_inst = Week2(wallet_info)
-    await week2_inst.pictograph_mint()
+    return await week2_inst.pictograph_mint()
 
 
 async def pictographs_stake(wallet_info):
@@ -328,7 +331,7 @@ async def pictographs_stake(wallet_info):
     """
 
     week2_inst = Week2(wallet_info)
-    await week2_inst.pictograph_stake()
+    return await week2_inst.pictograph_stake()
 
 
 async def satoshi_universe_mint(wallet_info):
@@ -337,7 +340,7 @@ async def satoshi_universe_mint(wallet_info):
     """
 
     week2_inst = Week2(wallet_info)
-    await week2_inst.satoshi_universe_mint()
+    return await week2_inst.satoshi_universe_mint()
 
 
 async def yooldo_daily_task(wallet_info):
@@ -346,7 +349,7 @@ async def yooldo_daily_task(wallet_info):
     """
 
     week2_inst = Week2(wallet_info)
-    await week2_inst.yooldo_daily_task()
+    return await week2_inst.yooldo_daily_task()
 
 ########################################################################
 #                             Week 3                                   #
@@ -358,7 +361,7 @@ async def send_mail(wallet_info):
     Task 1
     """
     dmail_inst = Dmail(wallet_info)
-    await dmail_inst.send_mail()
+    return await dmail_inst.send_mail()
 
 
 async def asmatch_mint(wallet_info):
@@ -367,7 +370,7 @@ async def asmatch_mint(wallet_info):
     """
 
     week3_inst = Week3(wallet_info)
-    await week3_inst.asmatch_mint()
+    return await week3_inst.asmatch_mint()
 
 
 async def bitavatar_checkin(wallet_info):
@@ -376,7 +379,7 @@ async def bitavatar_checkin(wallet_info):
     """
 
     week3_inst = Week3(wallet_info)
-    await week3_inst.bitavatar_checkin()
+    return await week3_inst.bitavatar_checkin()
 
 
 async def readon_curate(wallet_info):
@@ -385,7 +388,7 @@ async def readon_curate(wallet_info):
     """
 
     week3_inst = Week3(wallet_info)
-    await week3_inst.readon_curate()
+    return await week3_inst.readon_curate()
 
 
 ########################################################################
@@ -397,7 +400,7 @@ async def sarubol_mint(wallet_info):
     Task 2
     """
     week4_inst = Week4(wallet_info)
-    await week4_inst.sarubol_mint()
+    return await week4_inst.sarubol_mint()
 
 
 async def z2048_game(wallet_info):
@@ -405,7 +408,7 @@ async def z2048_game(wallet_info):
     Task 3.1
     """
     week4_inst = Week4(wallet_info)
-    await week4_inst.z2048_start_game()
+    return await week4_inst.z2048_start_game()
 
 
 async def adopt_cat(wallet_info):
@@ -413,7 +416,7 @@ async def adopt_cat(wallet_info):
     Task 8
     """
     week4_inst = Week4(wallet_info)
-    await week4_inst.lucky_cat_mint()
+    return await week4_inst.lucky_cat_mint()
 
 ########################################################################
 #                             Week 5                                   #
@@ -425,7 +428,7 @@ async def omnizone_mint(wallet_info):
     Task 1
     """
     week5_inst = Week5(wallet_info)
-    await week5_inst.omnizone_mint()
+    return await week5_inst.omnizone_mint()
 
 
 async def battlemon_mint(wallet_info):
@@ -433,7 +436,7 @@ async def battlemon_mint(wallet_info):
     Task 2
     """
     week5_inst = Week5(wallet_info)
-    await week5_inst.battlemon_mint()
+    return await week5_inst.battlemon_mint()
 
 
 async def play_nouns(wallet_info):
@@ -441,7 +444,7 @@ async def play_nouns(wallet_info):
     Task 3
     """
     week5_inst = Week5(wallet_info)
-    await week5_inst.play_nouns()
+    return await week5_inst.play_nouns()
 
 ########################################################################
 #                             Checker                                  #

@@ -74,9 +74,12 @@ class Routes(Account):
         for module in run_modules:
             if module is None:
                 logger.info(f"[{self.account_id}][{self.address}] Skip module")
+                status = True
             else:
-                await module(self.wallet_info)
-            await sleep(sleep_from, sleep_to)
+                status = await module(self.wallet_info)
+                print(status)
+            if status != -1:
+                await sleep(sleep_from, sleep_to)
 
     async def start_automatic(self, transaction_count, cheap_ratio,
                               sleep_from, sleep_to,

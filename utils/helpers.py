@@ -63,4 +63,5 @@ def quest_checker(func):
             else:
                 logger.warning(f"[{account.account_id}][{account.address}] Module {module_name} already complete. "
                                f"Skip module")
+                return -1
     return wrapper

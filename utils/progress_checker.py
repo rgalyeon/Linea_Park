@@ -58,7 +58,7 @@ class LineaScan:
                 df.loc[wallet, 'abuse_world_mint'] = True
             elif tx['to'] == '0xb18b7847072117ae863f71f9473d555d601eb537' and tx['methodId'] == '0x14f710fe':
                 df.loc[wallet, 'pictograph_mint'] = True
-            elif tx['to'] == 'gergmemg4l4':  # todo fix
+            elif tx['to'] == '0xb18b7847072117ae863f71f9473d555d601eb537' and tx['methodId'] == '0xa694fc3a':
                 df.loc[wallet, 'pictograph_stake'] = True
             elif tx['to'] == '0xecbee1a087aa83db1fcc6c2c5effc30bcb191589' and s_universe in tx['input']:
                 df.loc[wallet, 'satoshi_universe_mint'] = True
@@ -109,10 +109,10 @@ class LineaScan:
             return
         logger.info('Check quests progress from blockchain data')
 
-        cols = ['gamer_boom_proof', 'nidum_mint', 'townstory_mint', 'travelbag_mint', 'abuse_world_mint',
-                'pictograph_mint', 'pictograph_stake', 'satoshi_universe_mint', 'yooldo_daily_task', 'send_mail',
-                'wrap_eth', 'asmatch_mint', 'bitavatar_checkin', 'readon_curate', 'sendingme_send', 'sarubol_mint',
-                'z2048_start_game', 'lucky_cat_mint', 'omnizone_mint', 'battlemon_mint', 'play_nouns']
+        cols = ['gamer_boom_proof', 'gamer_boom_mint', 'nidum_mint', 'townstory_mint', 'travelbag_mint',
+                'abuse_world_mint', 'pictograph_mint', 'pictograph_stake', 'satoshi_universe_mint', 'yooldo_daily_task',
+                'send_mail', 'wrap_eth', 'asmatch_mint', 'bitavatar_checkin', 'readon_curate', 'sendingme_send',
+                'sarubol_mint', 'z2048_start_game', 'lucky_cat_mint', 'omnizone_mint', 'battlemon_mint', 'play_nouns']
 
         df = pd.DataFrame(columns=cols)
         all_proxies = [wallet_info['proxy'] for wallet_info in self.wallets_data]

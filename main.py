@@ -50,7 +50,7 @@ def get_module():
 
             Choice(f"Week 2/Task 1 [Main] Abuse World mint", abuse_world_mint),
             Choice(f"Week 2/Task 2 [Main] Pictographs mint", pictographs_mint),
-            Choice(f"Week 2/Task 2 [Bonus] Pictographs stake [NOT TESTED]", pictographs_stake),
+            Choice(f"Week 2/Task 2 [Bonus] Pictographs stake", pictographs_stake),
             Choice(f"Week 2/Task 4 [Main] Satoshi universe mint", satoshi_universe_mint),
             Choice(f"Week 2/Task 5 [Main] Yooldo daily task\n", yooldo_daily_task),
 
