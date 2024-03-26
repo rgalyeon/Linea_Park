@@ -63,6 +63,33 @@ class Routes(Account):
             return [random.choice(cheap_modules + ([None] if use_none else [])),
                     self.generate_nested_module(cheap_modules, use_none)]
 
+    @staticmethod
+    def fix_modules(modules):
+        pict_mint_idx, pict_stake_idx = None, None
+        townstory_mint_idx, travelbag_idx = None, None
+        game_proof_idx, game_mint_idx = None, None
+
+        for i, module in enumerate(modules):
+            if module.__name__ == 'townstory_mint':
+                townstory_mint_idx = i
+            elif module.__name__ == 'townstory_travelbag':
+                travelbag_idx = i
+            elif module.__name__ == 'pictographs_mint':
+                pict_mint_idx = i
+            elif module.__name__ == 'pictographs_stake':
+                pict_stake_idx = i
+            elif module.__name__ == 'game_boom_proof':
+                game_proof_idx = i
+            elif module.__name__ == 'game_boom_mint':
+                game_mint_idx = i
+
+        if townstory_mint_idx is not None and travelbag_idx is not None and townstory_mint_idx > travelbag_idx:
+            modules[travelbag_idx], modules[townstory_mint_idx] = modules[townstory_mint_idx], modules[travelbag_idx]
+        if pict_mint_idx is not None and pict_stake_idx is not None and pict_mint_idx > pict_stake_idx:
+            modules[pict_mint_idx], modules[pict_stake_idx] = modules[pict_stake_idx], modules[pict_mint_idx]
+        if game_proof_idx is not None and game_mint_idx is not None and game_proof_idx > game_mint_idx:
+            modules[game_proof_idx], modules[game_mint_idx] = modules[game_mint_idx], modules[game_proof_idx]
+
     async def start(self, use_modules: list, sleep_from: int, sleep_to: int, random_module: bool):
         logger.info(f"[{self.account_id}][{self.address}] Start using routes")
 
@@ -74,6 +101,8 @@ class Routes(Account):
                 if func.__name__ == 'withdraw_okx':
                     run_modules.insert(0, run_modules.pop(i))
                     break
+
+        self.fix_modules(run_modules)
 
         for module in run_modules:
             if module is None:
