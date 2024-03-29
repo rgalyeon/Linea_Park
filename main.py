@@ -69,7 +69,7 @@ def get_module():
             Choice(f"Week 5/Task 2 [Main] Battlemon mint", battlemon_mint),
             Choice(f"Week 5/Task 3 [Main] Play Nouns\n", play_nouns),
 
-            Choice(f"Week 6/Task 1 [Main] zAce check", zace_check_in),
+            Choice(f"Week 6/Task 1 [Main] zAce check-in", zace_check_in),
             Choice(f"Week 6/Task 2 [Main] micro3 mint", micro3_mint),
             Choice(f"Week 6/Task 3 [Main] Alienswap mint", alienswap_mint),
             Choice(f"Week 6/Task 4 [Main] Frog War mint", frog_war_mint),
