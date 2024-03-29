@@ -48,6 +48,15 @@ with open('data/abi/lucky_cat/abi.json', 'r') as file:
 with open('data/abi/nouns/abi.json', 'r') as file:
     NOUNS_ABI = json.load(file)
 
+with open('data/abi/micro3/abi.json', 'r') as file:
+    MICRO3_ABI = json.load(file)
+
+with open('data/abi/frog_war/abi.json', 'r') as file:
+    FROG_WAR_ABI = json.load(file)
+
+with open('data/abi/bilinear/abi.json', 'r') as file:
+    BILINEAR_ABI = json.load(file)
+
 
 ZERO_ADDRESS = "0x0000000000000000000000000000000000000000"
 
@@ -67,6 +76,11 @@ OMNIZONE_CONTRACT = "0x7136Abb0fa3d88E4B4D4eE58FC1dfb8506bb7De7"
 BATTLEMON_CONTRACT = "0x578705C60609C9f02d8B7c1d83825E2F031e35AA"
 UNFETTERED_CONTRACT = "0x2dC9D44eC35d5DEfD146e5fD718eE3277dfaCF0A"
 NOUNS_CONTRACT = "0x9DF3c2C75a92069B99c73bd386961631F143727C"
+MICRO3_CONTRACT = "0x915d2358192f5429fa6ee6a6e5d1b37026d580ba"
+ALIENSWAP_CONTRACT = "0x5EcDe77C11E52872aDeB3Ef3565Ffa0B2BCC1C68"
+FROG_WAR_CONTRACT = "0xEA81a18fb97401A9F4B79963090c65a3A30ECdce"
+WARRIOR_CONTRACT = "0x184e5677890c5add563de785ff371f6c188d3db6"
+BILINEAR_CONTRACT = "0xA091303966Ef5F94Cf68F85d892c729fd6c3F30B"
 
 
 LINEA_TOKENS = {

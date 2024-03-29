@@ -65,30 +65,24 @@ class Routes(Account):
 
     @staticmethod
     def fix_modules(modules):
-        pict_mint_idx, pict_stake_idx = None, None
-        townstory_mint_idx, travelbag_idx = None, None
-        game_proof_idx, game_mint_idx = None, None
+        pairs = [('townstory_mint', 'townstory_travelbag'),
+                 ('pictographs_mint', 'pictographs_stake'),
+                 ('game_boom_proof', 'game_boom_mint'),
+                 ('alienswap_mint', 'alienswap_bonus'),
+                 ('frog_war_mint', 'frog_war_bonus')]
 
+        tasks = set()
+        for pair in pairs:
+            tasks.update(pair)
+        modules_idx = {}
         for i, module in enumerate(modules):
-            if module.__name__ == 'townstory_mint':
-                townstory_mint_idx = i
-            elif module.__name__ == 'townstory_travelbag':
-                travelbag_idx = i
-            elif module.__name__ == 'pictographs_mint':
-                pict_mint_idx = i
-            elif module.__name__ == 'pictographs_stake':
-                pict_stake_idx = i
-            elif module.__name__ == 'game_boom_proof':
-                game_proof_idx = i
-            elif module.__name__ == 'game_boom_mint':
-                game_mint_idx = i
+            if module.__name__ in tasks:
+                modules_idx[module.__name__] = i
 
-        if townstory_mint_idx is not None and travelbag_idx is not None and townstory_mint_idx > travelbag_idx:
-            modules[travelbag_idx], modules[townstory_mint_idx] = modules[townstory_mint_idx], modules[travelbag_idx]
-        if pict_mint_idx is not None and pict_stake_idx is not None and pict_mint_idx > pict_stake_idx:
-            modules[pict_mint_idx], modules[pict_stake_idx] = modules[pict_stake_idx], modules[pict_mint_idx]
-        if game_proof_idx is not None and game_mint_idx is not None and game_proof_idx > game_mint_idx:
-            modules[game_proof_idx], modules[game_mint_idx] = modules[game_mint_idx], modules[game_proof_idx]
+        for main, bonus in pairs:
+            if main in modules_idx and bonus in modules_idx and modules_idx[main] > modules_idx[bonus]:
+                main_idx, bonus_idx = modules_idx[main], modules_idx[bonus]
+                modules[main_idx], modules[bonus_idx] = modules[bonus_idx], modules[main_idx]
 
     async def start(self, use_modules: list, sleep_from: int, sleep_to: int, random_module: bool):
         logger.info(f"[{self.account_id}][{self.address}] Start using routes")

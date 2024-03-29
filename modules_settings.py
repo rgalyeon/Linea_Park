@@ -24,12 +24,12 @@ async def withdraw_okx(wallet_info):
     token = 'ETH'
     chains = ['linea']
 
-    min_amount = 0.004
-    max_amount = 0.006
+    min_amount = 0.0045
+    max_amount = 0.0054
 
     terminate = False
 
-    skip_enabled = True
+    skip_enabled = False
     skip_threshold = 0.003
 
     wait_unlimited_time = False
@@ -198,6 +198,16 @@ async def custom_routes(wallet_info):
         - battlemon_mint(Task 2, main)
         - play_nouns (Task 3, main)
 
+    Week 6 modules:
+        - zace_check_in (Task 1, main)
+        - micro3_mint (Task 2, main)
+        - alienswap_mint (Task 3, main)
+        - frog_war_mint (Task 4, main)
+        - frog_war_bonus (Task 4, bonus)
+        - acg_worlds_mint (Task 6, main)
+        - bilinear_mint (Task 7, main)
+
+
     If random_module = True and withdraw_okx in use_modules, withdraw_okx will always be executed first
     ______________________________________________________
     Disclaimer - You can add modules to [] to select random ones,
@@ -210,15 +220,17 @@ async def custom_routes(wallet_info):
     example (send_mail, 1, 10) run this module 1 to 10 times
     """
     use_modules = [
-        withdraw_okx, game_boom_proof, game_boom_mint, townstory_mint, townstory_travelbag,  # week 1
+        game_boom_proof, game_boom_mint, townstory_mint, townstory_travelbag,  # week 1
         abuse_world_mint, pictographs_mint, pictographs_stake, satoshi_universe_mint, yooldo_daily_task,  # week 2
         send_mail, wrap_eth, asmatch_mint, bitavatar_checkin, readon_curate, sendingme_task,  # week 3
         sarubol_mint, z2048_game, adopt_cat,  # week 4
-        omnizone_mint, battlemon_mint, play_nouns  # week 5
+        omnizone_mint, battlemon_mint, play_nouns,  # week 5
+        zace_check_in, micro3_mint, alienswap_mint, frog_war_mint,  # week 6
+        frog_war_bonus, acg_worlds_mint, bilinear_mint  # week 6
     ]
 
     sleep_from = 120
-    sleep_to = 310
+    sleep_to = 180
 
     random_module = True
 
@@ -446,6 +458,67 @@ async def play_nouns(wallet_info):
     """
     week5_inst = Week5(wallet_info)
     return await week5_inst.play_nouns()
+
+########################################################################
+#                             Week 6                                   #
+########################################################################
+
+
+async def zace_check_in(wallet_info):
+    """
+    Task 1
+    """
+    week6_inst = Week6(wallet_info)
+    return await week6_inst.zace_check_in()
+
+
+async def micro3_mint(wallet_info):
+    """
+    Task 2
+    """
+    week6_inst = Week6(wallet_info)
+    return await week6_inst.micro3_mint()
+
+
+async def alienswap_mint(wallet_info):
+    """
+    Task 3
+    """
+    week6_inst = Week6(wallet_info)
+    return await week6_inst.alienswap_mint()
+
+
+async def frog_war_mint(wallet_info):
+    """
+    Task 4
+    """
+    week6_inst = Week6(wallet_info)
+    return await week6_inst.frog_war_mint()
+
+
+async def frog_war_bonus(wallet_info):
+    """
+    Task 4 bonus
+    """
+    week6_inst = Week6(wallet_info)
+    return await week6_inst.frog_war_bonus()
+
+
+async def acg_worlds_mint(wallet_info):
+    """
+    Task 6
+    """
+    week6_inst = Week6(wallet_info)
+    return await week6_inst.acg_worlds_mint()
+
+
+async def bilinear_mint(wallet_info):
+    """
+    Task 7
+    """
+    week6_inst = Week6(wallet_info)
+    return await week6_inst.bilinear_mint()
+
 
 ########################################################################
 #                             Checker                                  #

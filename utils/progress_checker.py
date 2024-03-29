@@ -91,6 +91,21 @@ class LineaScan:
                 df.loc[wallet, 'battlemon_mint'] = True
             elif tx['to'] == '0x9df3c2c75a92069b99c73bd386961631f143727c' and tx['methodId'] == '0x57bc3d78':
                 df.loc[wallet, 'play_nouns'] = True
+            # Week 6
+            elif tx['to'] == '0x971a871fd8811abbb1f5e3fb1d84a873d381cee4' and tx['methodId'] == '0xbaeb0718':
+                df.loc[wallet, 'zace_check_in'] = True
+            elif tx['to'] == '0x915d2358192f5429fa6ee6a6e5d1b37026d580ba' and tx['methodId'] == '0xefef39a1':
+                df.loc[wallet, 'micro3_mint'] = True
+            elif tx['to'] == '0x5ecde77c11e52872adeb3ef3565ffa0b2bcc1c68' and tx['methodId'] == '0xefef39a1':
+                df.loc[wallet, 'alienswap_mint'] = True
+            elif tx['to'] == '0xea81a18fb97401a9f4b79963090c65a3a30ecdce' and tx['methodId'] == '0x57bc3d78':
+                df.loc[wallet, 'frog_war_mint'] = True
+            elif tx['to'] == '0x184e5677890c5add563de785ff371f6c188d3db6' and tx['methodId'] == '0x57bc3d78':
+                df.loc[wallet, 'frog_war_bonus'] = True
+            elif tx['to'] == '0xcd1ea9e70d0260c0f47d217ed6d5be9cd4ed34fb' and tx['methodId'] == '0x1249c58b':
+                df.loc[wallet, 'acg_worlds_mint'] = True
+            elif tx['to'] == '0xa091303966ef5f94cf68f85d892c729fd6c3f30b' and tx['methodId'] == '0x738a9fa1':
+                df.loc[wallet, 'bilinear_mint'] = True
 
     def wait_transactions(self, address, all_proxies):
         n_attemps = 10
@@ -112,7 +127,9 @@ class LineaScan:
         cols = ['gamer_boom_proof', 'gamer_boom_mint', 'nidum_mint', 'townstory_mint', 'travelbag_mint',
                 'abuse_world_mint', 'pictograph_mint', 'pictograph_stake', 'satoshi_universe_mint', 'yooldo_daily_task',
                 'send_mail', 'wrap_eth', 'asmatch_mint', 'bitavatar_checkin', 'readon_curate', 'sendingme_send',
-                'sarubol_mint', 'z2048_start_game', 'lucky_cat_mint', 'omnizone_mint', 'battlemon_mint', 'play_nouns']
+                'sarubol_mint', 'z2048_start_game', 'lucky_cat_mint', 'omnizone_mint', 'battlemon_mint', 'play_nouns',
+                'zace_check_in', 'micro3_mint', 'alienswap_mint', 'frog_war_mint', 'frog_war_bonus',
+                'acg_worlds_mint', 'bilinear_mint']
 
         df = pd.DataFrame(columns=cols)
         all_proxies = [wallet_info['proxy'] for wallet_info in self.wallets_data]

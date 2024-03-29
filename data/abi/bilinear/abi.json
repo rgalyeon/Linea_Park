@@ -1,0 +1,64 @@
+[
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32[]",
+        "name": "merkleProof",
+        "type": "bytes32[]"
+      },
+      {
+        "components": [
+          {
+            "internalType": "uint256[]",
+            "name": "tokenIds",
+            "type": "uint256[]"
+          },
+          {
+            "internalType": "uint256[]",
+            "name": "quantities",
+            "type": "uint256[]"
+          }
+        ],
+        "internalType": "struct DropProtocol.ClaimParams",
+        "name": "_claimParams",
+        "type": "tuple"
+      },
+      {
+        "components": [
+          {
+            "internalType": "uint256[]",
+            "name": "leafTokenIds",
+            "type": "uint256[]"
+          },
+          {
+            "internalType": "uint256[]",
+            "name": "leafPrices",
+            "type": "uint256[]"
+          },
+          {
+            "internalType": "uint256[]",
+            "name": "leafMaxQuantities",
+            "type": "uint256[]"
+          }
+        ],
+        "internalType": "struct DropProtocol.LeafParams",
+        "name": "_leafParams",
+        "type": "tuple"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_tip",
+        "type": "uint256"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "_dropId",
+        "type": "bytes32"
+      }
+    ],
+    "name": "claim",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  }
+]

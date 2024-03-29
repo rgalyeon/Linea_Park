@@ -56,6 +56,7 @@ class Week5(Account):
 
         return True
 
+    @quest_checker
     @retry
     @check_gas
     async def play_nouns(self):

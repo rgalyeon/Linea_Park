@@ -63,9 +63,7 @@ class Week2(Account):
     @retry
     @check_gas
     async def pictograph_stake(self):
-        """
-        TODO NEED TEST
-        """
+
         logger.info(f"[{self.account_id}][{self.address}] Start Pictographs stake")
 
         contract = self.get_contract(PICTOGRAPHS_CONTRACT, PICTOGRAPHS_ABI)
