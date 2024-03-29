@@ -164,7 +164,10 @@ class Account:
         if RPC[self.chain]["eip1559"]:
             max_priority_fee_per_gas = await self.get_priority_fee()
             base_fee = await self.w3.eth.gas_price
-            max_fee_per_gas = base_fee + max_priority_fee_per_gas * GAS_MULTIPLIER
+            max_fee_per_gas = int(base_fee + max_priority_fee_per_gas * GAS_MULTIPLIER)
+
+            if max_fee_per_gas > base_fee:
+                max_fee_per_gas = base_fee
 
             if max_priority_fee_per_gas > max_fee_per_gas:
                 max_priority_fee_per_gas = int(max_fee_per_gas * 0.95)
