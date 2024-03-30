@@ -24,13 +24,13 @@ async def withdraw_okx(wallet_info):
     token = 'ETH'
     chains = ['linea']
 
-    min_amount = 0.0045
-    max_amount = 0.0054
+    min_amount = 0.0023
+    max_amount = 0.003
 
     terminate = False
 
     skip_enabled = False
-    skip_threshold = 0.003
+    skip_threshold = 0.005
 
     wait_unlimited_time = False
     sleep_between_attempts = [10, 20]  # min, max
@@ -170,6 +170,7 @@ async def custom_routes(wallet_info):
         - game_boom_proof (Task 2, main)
         - game_boom_mint (Task 2, bonus)
         - nidum_mint (Task 3, main)
+        - nidum_bonus (Task 3, bonus)
         - townstory_mint (Task 4, main)
         - townstory_travelbag (Task 4, bonus)
 
@@ -206,6 +207,8 @@ async def custom_routes(wallet_info):
         - frog_war_bonus (Task 4, bonus)
         - acg_worlds_mint (Task 6, main)
         - bilinear_mint (Task 7, main)
+        - imagineairynfts_mint (Task 10, main)
+        - arenagames_mint (Task 11, main)
 
 
     If random_module = True and withdraw_okx in use_modules, withdraw_okx will always be executed first
@@ -220,13 +223,13 @@ async def custom_routes(wallet_info):
     example (send_mail, 1, 10) run this module 1 to 10 times
     """
     use_modules = [
-        game_boom_proof, game_boom_mint, townstory_mint, townstory_travelbag,  # week 1
+        game_boom_proof, game_boom_mint, nidum_mint, nidum_bonus, townstory_mint, townstory_travelbag,  # week 1
         abuse_world_mint, pictographs_mint, pictographs_stake, satoshi_universe_mint, yooldo_daily_task,  # week 2
         send_mail, wrap_eth, asmatch_mint, bitavatar_checkin, readon_curate, sendingme_task,  # week 3
         sarubol_mint, z2048_game, adopt_cat,  # week 4
         omnizone_mint, battlemon_mint, play_nouns,  # week 5
-        zace_check_in, micro3_mint, alienswap_mint, frog_war_mint,  # week 6
-        frog_war_bonus, acg_worlds_mint, bilinear_mint  # week 6
+        zace_check_in, micro3_mint, alienswap_mint, frog_war_mint, frog_war_bonus,  # week 6
+        acg_worlds_mint, bilinear_mint, arenagames_mint, imagineairynfts_mint  # week 6
     ]
 
     sleep_from = 120
@@ -293,10 +296,18 @@ async def game_boom_proof(wallet_info):
 
 async def nidum_mint(wallet_info):
     """
-    Task 3. DOESN'T WORK
+    Task 3
     """
     week1_inst = Week1(wallet_info)
     return await week1_inst.nidum_mint()
+
+
+async def nidum_bonus(wallet_info):
+    """
+    Task 3. Bonus
+    """
+    week1_inst = Week1(wallet_info)
+    return await week1_inst.nidum_bonus()
 
 
 async def townstory_mint(wallet_info):
@@ -518,6 +529,22 @@ async def bilinear_mint(wallet_info):
     """
     week6_inst = Week6(wallet_info)
     return await week6_inst.bilinear_mint()
+
+
+async def imagineairynfts_mint(wallet_info):
+    """
+    Task 10
+    """
+    week6_inst = Week6(wallet_info)
+    return await week6_inst.imagineairynfts_mint()
+
+
+async def arenagames_mint(wallet_info):
+    """
+    Task 11
+    """
+    week6_inst = Week6(wallet_info)
+    return await week6_inst.arenagames_mint()
 
 
 ########################################################################

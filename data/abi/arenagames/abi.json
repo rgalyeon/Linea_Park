@@ -1,0 +1,15 @@
+[
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "address",
+        "type": "address"
+      }
+    ],
+    "name": "safeMint",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  }
+]

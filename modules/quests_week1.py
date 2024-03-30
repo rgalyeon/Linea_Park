@@ -71,6 +71,30 @@ class Week1(Account):
     @quest_checker
     @retry
     @check_gas
+    async def nidum_bonus(self):
+        logger.info(f"[{self.account_id}][{self.address}] Start nidum burn nft (bonus)")
+        contract = self.get_contract(NIDUM_CONTRACT, NIDUM_ABI)
+        token_id = 9
+
+        balance = await contract.functions.balanceOf(self.address, token_id).call()
+        if balance == 0:
+            logger.error(f"[{self.account_id}][{self.address}] No nidum nft. Mint first. Skip module")
+            return
+
+        tx_data = await self.get_tx_data()
+        transaction = await contract.functions.burn(
+            self.address, 9, 1
+        ).build_transaction(tx_data)
+
+        signed_tx = await self.sign(transaction)
+        tnx_hash = await self.send_raw_transaction(signed_tx)
+        await self.wait_until_tx_finished(tnx_hash.hex())
+
+        return True
+
+    @quest_checker
+    @retry
+    @check_gas
     async def townstory_mint(self):
         logger.info(f"[{self.account_id}][{self.address}] Start Townstory mint")
 

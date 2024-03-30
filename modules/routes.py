@@ -69,7 +69,8 @@ class Routes(Account):
                  ('pictographs_mint', 'pictographs_stake'),
                  ('game_boom_proof', 'game_boom_mint'),
                  ('alienswap_mint', 'alienswap_bonus'),
-                 ('frog_war_mint', 'frog_war_bonus')]
+                 ('frog_war_mint', 'frog_war_bonus'),
+                 ('nidum_mint', 'nidum_bonus')]
 
         tasks = set()
         for pair in pairs:

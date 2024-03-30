@@ -57,6 +57,12 @@ with open('data/abi/frog_war/abi.json', 'r') as file:
 with open('data/abi/bilinear/abi.json', 'r') as file:
     BILINEAR_ABI = json.load(file)
 
+with open('data/abi/imaginairynfts/abi.json', 'r') as file:
+    IMAGINEAI_ABI = json.load(file)
+
+with open('data/abi/arenagames/abi.json', 'r') as file:
+    ARENAGAMES_ABI = json.load(file)
+
 
 ZERO_ADDRESS = "0x0000000000000000000000000000000000000000"
 
@@ -81,6 +87,8 @@ ALIENSWAP_CONTRACT = "0x5EcDe77C11E52872aDeB3Ef3565Ffa0B2BCC1C68"
 FROG_WAR_CONTRACT = "0xEA81a18fb97401A9F4B79963090c65a3A30ECdce"
 WARRIOR_CONTRACT = "0x184e5677890c5add563de785ff371f6c188d3db6"
 BILINEAR_CONTRACT = "0xA091303966Ef5F94Cf68F85d892c729fd6c3F30B"
+IMAGINEAI_CONTRACT = "0xb99e5534d42500eb1d5820fba3bb8416ccb76396"
+ARENAGAMES_CONTRACT = "0xbd0ef89f141680b9b2417e4384fdf73cfc696f9f"
 
 
 LINEA_TOKENS = {

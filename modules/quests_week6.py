@@ -5,7 +5,9 @@ from .account import Account
 from config import (MICRO3_ABI, MICRO3_CONTRACT,
                     ALIENSWAP_ABI, ALIENSWAP_CONTRACT,
                     FROG_WAR_CONTRACT, FROG_WAR_ABI, WARRIOR_CONTRACT,
-                    BILINEAR_CONTRACT, BILINEAR_ABI
+                    BILINEAR_CONTRACT, BILINEAR_ABI,
+                    IMAGINEAI_CONTRACT, IMAGINEAI_ABI,
+                    ARENAGAMES_CONTRACT, ARENAGAMES_ABI
                     )
 from eth_abi import encode
 from web3 import Web3
@@ -22,7 +24,8 @@ class Week6(Account):
         logger.info(f"[{self.account_id}][{self.address}] Start zAce check in")
         contract = '0x971a871fd8811abbb1f5e3fb1d84a873d381cee4'
 
-        tx_data = await self.get_tx_data()
+        amount = self.w3.to_wei(0.00005, 'ether')
+        tx_data = await self.get_tx_data(amount)
         tx_data['data'] = '0xbaeb0718'
         tx_data['to'] = self.w3.to_checksum_address(contract)
 
@@ -186,3 +189,36 @@ class Week6(Account):
 
         return True
 
+    @quest_checker
+    @retry
+    @check_gas
+    async def imagineairynfts_mint(self):
+        logger.info(f"[{self.account_id}][{self.address}] Start ImagineAIryNFTs mint")
+        contract = self.get_contract(IMAGINEAI_CONTRACT, IMAGINEAI_ABI)
+        uri = "https://ipfs.io/ipfs/bafyreidwx4uav5zivvk7kto2pwszxlcqazqpbxub24zbkk5xzmeiugdap4/metadata.json"
+
+        amount = self.w3.to_wei(0.00005, "ether")
+        tx_data = await self.get_tx_data(amount)
+        transaction = await contract.functions.mint(uri).build_transaction(tx_data)
+
+        signed_tx = await self.sign(transaction)
+        tnx_hash = await self.send_raw_transaction(signed_tx)
+        await self.wait_until_tx_finished(tnx_hash.hex())
+
+        return True
+
+    @quest_checker
+    @retry
+    @check_gas
+    async def arenagames_mint(self):
+        logger.info(f"[{self.account_id}][{self.address}] Start Arena Games mint")
+        contract = self.get_contract(ARENAGAMES_CONTRACT, ARENAGAMES_ABI)
+
+        tx_data = await self.get_tx_data()
+        transaction = await contract.functions.safeMint(self.address).build_transaction(tx_data)
+
+        signed_tx = await self.sign(transaction)
+        tnx_hash = await self.send_raw_transaction(signed_tx)
+        await self.wait_until_tx_finished(tnx_hash.hex())
+
+        return True

@@ -45,6 +45,7 @@ def get_module():
 
             Choice(f"Week 1/Task 2 [Main] Game Boom Proof", game_boom_proof),
             Choice(f"Week 1/Task 3 [Main] Nidum mint", nidum_mint),
+            Choice(f"Week 1/Task 3 [Bonus] Nidum bonus", nidum_bonus),
             Choice(f"Week 1/Task 4 [Main] Townstory mint", townstory_mint),
             Choice(f"Week 1/Task 4 [Bonus] Townstory mint travelbag\n", townstory_travelbag),
 
@@ -75,7 +76,9 @@ def get_module():
             Choice(f"Week 6/Task 4 [Main] Frog War mint", frog_war_mint),
             Choice(f"Week 6/Task 4 [Bonus] Warrior mint", frog_war_bonus),
             Choice(f"Week 6/Task 6 [Main] ACG WORLDS mint", acg_worlds_mint),
-            Choice(f"Week 6/Task 7 [Main] Bilinear Mint\n", bilinear_mint),
+            Choice(f"Week 6/Task 7 [Main] Bilinear mint", bilinear_mint),
+            Choice(f"Week 6/Task 10 [Main] ImagineAiNFTs mint", imagineairynfts_mint),
+            Choice(f"Week 6/Task 11 [Main] Arena Games mint\n", arenagames_mint),
 
             Choice(f"Exit", "exit"),
         ],

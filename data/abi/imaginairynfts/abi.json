@@ -1,0 +1,15 @@
+[
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "tokenURI",
+        "type": "string"
+      }
+    ],
+    "name": "mint",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  }
+]
