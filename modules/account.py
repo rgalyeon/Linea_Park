@@ -156,6 +156,8 @@ class Account:
                     return
             except TransactionNotFound:
                 if time.time() - start_time > max_wait_time:
+                    logger.warning(f'[{self.account_id}][{self.address}] {self.explorer}{hash} Transaction not found, '
+                                   f'check blockscan! (Timeout error)')
                     print(f'FAILED TX: {hash}')
                     return
                 await asyncio.sleep(1)

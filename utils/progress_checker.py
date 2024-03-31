@@ -67,7 +67,8 @@ class LineaScan:
             elif tx['to'] == '0x63ce21bd9af8cc603322cb025f26db567de8102b' and tx['methodId'] == '0xfb89f3b1':
                 df.loc[wallet, 'yooldo_daily_task'] = True
             # Week 3
-            elif tx['to'] == '0xd1a3abf42f9e66be86cfdea8c5c2c74f041c5e14' and tx['methodId'] == '0x5b7d7482':
+            elif tx['to'] == '0xd1a3abf42f9e66be86cfdea8c5c2c74f041c5e14' and (tx['methodId'] == '0x5b7d7482'
+                                                                               and tx['timeStamp'] > '1709251200'):
                 df.loc[wallet, 'send_mail'] = True
             elif tx['to'] == '0xe5d7c2a44ffddf6b295a15c148167daaaf5cf34f' and tx['methodId'] == '0xd0e30db0':
                 df.loc[wallet, 'wrap_eth'] = True
@@ -153,6 +154,6 @@ class LineaScan:
                     self.parse_transactions(transactions['result'][:100], wallet_info['address'], df)
                 else:
                     print(transactions)
-            except:
-                logger.warning(f'Can not parse {address} wallet')
+            except Exception as e:
+                logger.warning(f'Can not parse {address} wallet. Error: {e}')
         df.fillna(False).to_excel('progress.xlsx')

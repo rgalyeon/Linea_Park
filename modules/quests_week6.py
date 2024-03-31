@@ -197,7 +197,7 @@ class Week6(Account):
         contract = self.get_contract(IMAGINEAI_CONTRACT, IMAGINEAI_ABI)
         uri = "https://ipfs.io/ipfs/bafyreidwx4uav5zivvk7kto2pwszxlcqazqpbxub24zbkk5xzmeiugdap4/metadata.json"
 
-        amount = self.w3.to_wei(0.00005, "ether")
+        amount = self.w3.to_wei(0.0001, "ether")
         tx_data = await self.get_tx_data(amount)
         transaction = await contract.functions.mint(uri).build_transaction(tx_data)
 
