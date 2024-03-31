@@ -56,7 +56,8 @@ class LineaScan:
             elif tx['to'] == '0xd41ac492fedc671eb965707d1dedad4eb7b6efc5' and tx['methodId'] == '0x48e33382':
                 df.loc[wallet, 'travelbag_mint'] = True
             # Week 2
-            elif tx['to'] == '0x66ccc220543b6832f93c2082edd7be19c21df6c0' and tx['methodId'] == '0xefef39a1':
+            elif (tx['to'] == '0x66ccc220543b6832f93c2082edd7be19c21df6c0' or
+                  tx['to'] == "0x0391c15886b5f74a776b404c82d30eef4be88335") and tx['methodId'] == '0xefef39a1':
                 df.loc[wallet, 'abuse_world_mint'] = True
             elif tx['to'] == '0xb18b7847072117ae863f71f9473d555d601eb537' and tx['methodId'] == '0x14f710fe':
                 df.loc[wallet, 'pictograph_mint'] = True
@@ -72,7 +73,8 @@ class LineaScan:
                 df.loc[wallet, 'send_mail'] = True
             elif tx['to'] == '0xe5d7c2a44ffddf6b295a15c148167daaaf5cf34f' and tx['methodId'] == '0xd0e30db0':
                 df.loc[wallet, 'wrap_eth'] = True
-            elif tx['to'] == '0xc043bce9af87004398181a8de46b26e63b29bf99' and tx['methodId'] == '0xefef39a1':
+            elif tx['to'] == '0xc043bce9af87004398181a8de46b26e63b29bf99' and (tx['methodId'] == '0xefef39a1'
+                                                                               and tx['timeStamp'] > '1709251200'):
                 df.loc[wallet, 'asmatch_mint'] = True
             elif tx['to'] == '0x37d4bfc8c583d297a0740d734b271eac9a88ade4' and tx['methodId'] == '0x183ff085':
                 df.loc[wallet, 'bitavatar_checkin'] = True
