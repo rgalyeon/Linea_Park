@@ -63,8 +63,14 @@ with open('data/abi/imaginairynfts/abi.json', 'r') as file:
 with open('data/abi/arenagames/abi.json', 'r') as file:
     ARENAGAMES_ABI = json.load(file)
 
+with open('data/abi/layerbank/abi.json', 'r') as file:
+    LAYERBANK_ABI = json.load(file)
+
 
 ZERO_ADDRESS = "0x0000000000000000000000000000000000000000"
+LAYERBANK_CONTRACT = "0x43Eac5BFEa14531B8DE0B334E123eA98325de866"
+LAYERBANK_WETH_CONTRACT = "0x9E9aec6a296f94C8530e2dD01FF3E9c61555D39a"
+
 
 DMAIL_CONTRACT = "0xD1A3abf42f9E66BE86cfDEa8c5C2c74f041c5e14"
 NIDUM_CONTRACT = "0x34be5b8c30ee4fde069dc878989686abe9884470"

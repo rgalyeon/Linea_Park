@@ -41,9 +41,12 @@ def get_module():
             Choice(f"{next(counter)}) Bridge Orbiter", bridge_orbiter),
             Choice(f"{next(counter)}) Use custom routes", custom_routes),
             Choice(f"{next(counter)}) Quest progress checker (need proxy)", progress_check),
+            Choice(f"{next(counter)}) Deposit LayerBank", deposit_layerbank),
+            Choice(f"{next(counter)}) Withdraw LayerBank", withdraw_layerbank),
             Choice(f"{next(counter)}) Exit\n", "exit"),
 
             Choice(f"Week 1/Task 2 [Main] Game Boom Proof", game_boom_proof),
+            Choice(f"Week 1/Task 2 [Bonus] Game Boom Mint", game_boom_mint),
             Choice(f"Week 1/Task 3 [Main] Nidum mint", nidum_mint),
             Choice(f"Week 1/Task 3 [Bonus] Nidum bonus", nidum_bonus),
             Choice(f"Week 1/Task 4 [Main] Townstory mint", townstory_mint),

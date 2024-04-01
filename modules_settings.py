@@ -125,6 +125,56 @@ async def bridge_orbiter(wallet_info):
         sleep_between_transfers=sleep_between_transfers
     )
 
+
+async def deposit_layerbank(wallet_info):
+    """
+    Make deposit on LayerBank
+    ______________________________________________________
+    min_amount - the minimum possible amount for deposit
+    max_amount - maximum possible amount for deposit
+    decimal - to which digit to round the amount to be deposited
+
+    make_withdraw - True, if need withdraw after deposit
+    required_amount_for_withdraw - if less than parameter - skip withdrawal
+    sleep_from, sleep_to - minimum/maximum delay before withdrawal (if make_withdraw = True)
+
+    all_amount - if True, percentage values will be used for deposit (min_percent, max_percent
+                 instead of min_amount, max_amount).
+
+    min_percent - the minimum possible percentage of the balance for deposit
+    max_percent - the maximum possible percentage of the balance for deposit
+
+
+    all_amount - deposit from min_percent to max_percent
+    """
+    min_amount = 0.0001
+    max_amount = 0.0002
+    decimal = 5
+
+    make_withdraw = True
+    required_amount_for_withdraw = 0.001
+
+    sleep_from = 30
+    sleep_to = 60
+
+    all_amount = False
+
+    min_percent = 5
+    max_percent = 35
+
+    layerbank_inst = LayerBank(wallet_info)
+    await layerbank_inst.router(
+        min_amount, max_amount, decimal, sleep_from, sleep_to, make_withdraw, all_amount, min_percent, max_percent,
+        required_amount_for_withdraw=required_amount_for_withdraw
+    )
+
+
+async def withdraw_layerbank(wallet_info):
+    required_amount_for_withdraw = 0.001
+
+    layerbank_inst = LayerBank(wallet_info)
+    await layerbank_inst.withdraw(required_amount_for_withdraw)
+
 ########################################################################
 #                    Linea Park Setup Modules                          #
 ########################################################################
@@ -209,6 +259,13 @@ async def custom_routes(wallet_info):
         - bilinear_mint (Task 7, main)
         - imagineairynfts_mint (Task 10, main)
         - arenagames_mint (Task 11, main)
+
+    Other modules:
+        - withdraw_okx
+        - bridge_orbiter
+        - deposit_layerbank
+        - withdraw_layerbank
+        - transfer_to_okx
 
 
     If random_module = True and withdraw_okx in use_modules, withdraw_okx will always be executed first

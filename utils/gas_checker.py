@@ -39,25 +39,30 @@ def get_max_gwei_user_settings():
     return max_gwei
 
 
-async def get_gas():
+async def get_gas(request_kwargs):
     try:
         w3 = AsyncWeb3(
-            AsyncWeb3.AsyncHTTPProvider(random.choice(RPC["linea"]["rpc"])),
+            AsyncWeb3.AsyncHTTPProvider(random.choice(RPC["linea"]["rpc"]),
+                                        request_kwargs=request_kwargs),
             modules={"eth": (AsyncEth,)},
         )
         gas_price = await w3.eth.gas_price
         gwei = w3.from_wei(gas_price, 'gwei')
         return gwei
-    except Exception as error:
-        logger.error(error)
+    except Exception:
+        if 'proxy' in request_kwargs:
+            logger.error(f"Can't connect to rpc with {request_kwargs['proxy']} proxy")
+        else:
+            logger.error(f"Can't connect to rpc. Try to turn off VPN")
 
 
-async def wait_gas():
+async def wait_gas(account):
     logger.info("Get GWEI")
     while True:
         try:
-            gas = await get_gas()
-
+            gas = await get_gas(account.request_kwargs)
+            if gas is None and 'proxy' in account.request_kwargs:
+                gas = await get_gas({})
             max_gwei = get_max_gwei_user_settings()
             if gas > max_gwei:
                 logger.info(f'Current GWEI: {gas} > {max_gwei}')
@@ -75,7 +80,7 @@ def check_gas(func):
     async def _wrapper(*args, **kwargs):
         with transaction_lock:
             if CHECK_GWEI:
-                await wait_gas()
+                await wait_gas(args[0])
             result = await func(*args, **kwargs)
             if CHECK_GWEI:
                 await sleep(SLEEP_AFTER_TX_FROM, SLEEP_AFTER_TX_TO)
