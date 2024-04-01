@@ -92,10 +92,18 @@ class Routes(Account):
 
         if random_module:
             random.shuffle(run_modules)
+            withdraw_idx, transfer_idx = None, None
+
             for i, func in enumerate(run_modules):
                 if func.__name__ == 'withdraw_okx':
-                    run_modules.insert(0, run_modules.pop(i))
-                    break
+                    withdraw_idx = i
+                elif func.__name__ == 'transfer_to_okx':
+                    transfer_idx = i
+
+            if withdraw_idx is not None:
+                run_modules.insert(0, run_modules.pop(withdraw_idx))
+            if transfer_idx is not None:
+                run_modules.append(run_modules.pop(transfer_idx))
 
         self.fix_modules(run_modules)
 
