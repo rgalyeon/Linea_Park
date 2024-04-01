@@ -43,7 +43,7 @@ class Week5(Account):
 
         balance = await contract.functions.balanceOf(self.address).call()
         if balance > 0:
-            logger.warning(f"[{self.account_id}][{self.address}] Omnizone already minted. Skip module")
+            logger.warning(f"[{self.account_id}][{self.address}] Battlemon already minted. Skip module")
             return
 
         tx_data = await self.get_tx_data()
