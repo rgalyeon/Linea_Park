@@ -50,7 +50,7 @@ class Account:
         }
 
         if not RPC[self.chain]["eip1559"]:
-            tx.update({"gasPrice": await self.w3.eth.gas_price})
+            tx.update({"gasPrice": int((await self.w3.eth.gas_price) * GAS_MULTIPLIER)})
 
         return tx
 
