@@ -178,10 +178,10 @@ class Week6(Account):
         tx_data = await self.get_tx_data()
         transaction = await contract.functions.claim(
             [],
-            ([], [1]),
+            ([], [2]),
             ([], [], []),
             0,
-            Web3.to_bytes(hexstr="9ce46a75af5117679e3393d8844ec85ed684cf325e48be9822469e12cfe53482")
+            Web3.to_bytes(hexstr="307b8d76e3a3ca16066982ae42768878ec07a1b9af2679f2f9b8a3c3db25e7d5")
         ).build_transaction(tx_data)
         signed_tx = await self.sign(transaction)
         tnx_hash = await self.send_raw_transaction(signed_tx)
