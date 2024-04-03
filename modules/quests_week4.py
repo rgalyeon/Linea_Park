@@ -23,7 +23,7 @@ class Week4(Account):
             logger.warning(f"[{self.account_id}][{self.address}] Sarubol already minted. Skip module")
             return
 
-        amount = self.w3.to_wei(0.0001, "ether")
+        amount = self.w3.to_wei(0.0002, "ether")
         quantity = 1
 
         tx_data = await self.get_tx_data(value=amount)
