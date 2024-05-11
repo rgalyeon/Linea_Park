@@ -1,5 +1,6 @@
 import asyncio
 from utils.progress_checker import LineaScan
+from utils.poh_checker import PohChecker
 from modules import *
 
 
@@ -29,8 +30,8 @@ async def withdraw_okx(wallet_info):
 
     terminate = False
 
-    skip_enabled = False
-    skip_threshold = 0.005
+    skip_enabled = True
+    skip_threshold = 0.002
 
     wait_unlimited_time = False
     sleep_between_attempts = [10, 20]  # min, max
@@ -279,7 +280,7 @@ async def custom_routes(wallet_info):
     You can also specify () to perform the desired action a certain number of times
     example (send_mail, 1, 10) run this module 1 to 10 times
     """
-    use_modules = [
+    use_modules = [withdraw_okx,
         game_boom_proof, game_boom_mint, nidum_mint, nidum_bonus, townstory_mint, townstory_travelbag,  # week 1
         abuse_world_mint, pictographs_mint, pictographs_stake, satoshi_universe_mint, yooldo_daily_task,  # week 2
         send_mail, wrap_eth, asmatch_mint, bitavatar_checkin, readon_curate, sendingme_task,  # week 3
@@ -289,8 +290,8 @@ async def custom_routes(wallet_info):
         acg_worlds_mint, bilinear_mint, arenagames_mint, imagineairynfts_mint  # week 6
     ]
 
-    sleep_from = 120
-    sleep_to = 180
+    sleep_from = 40
+    sleep_to = 70
 
     random_module = True
 
@@ -614,3 +615,8 @@ def progress_check(wallets_data):
     replace = True
 
     LineaScan(wallets_data).get_wallet_progress(replace)
+
+
+def poh_check(wallets_data):
+
+    PohChecker(wallets_data).check_attest()

@@ -41,6 +41,7 @@ def get_module():
             Choice(f"{next(counter)}) Bridge Orbiter", bridge_orbiter),
             Choice(f"{next(counter)}) Use custom routes", custom_routes),
             Choice(f"{next(counter)}) Quest progress checker (need proxy)", progress_check),
+            Choice(f"{next(counter)}) PoH checker (need proxy)", poh_check),
             Choice(f"{next(counter)}) Deposit LayerBank", deposit_layerbank),
             Choice(f"{next(counter)}) Withdraw LayerBank", withdraw_layerbank),
             Choice(f"{next(counter)}) Exit\n", "exit"),
@@ -120,6 +121,9 @@ def main(module):
         return encrypt_privates(force=True)
 
     wallets_data = get_wallets()
+
+    if module == poh_check:
+        return poh_check(wallets_data)
 
     if module == progress_check:
         return progress_check(wallets_data)
