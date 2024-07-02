@@ -47,6 +47,7 @@ def get_module():
             Choice(f"{next(counter)}) Exit\n", "exit"),
 
             Choice(f"CSZN Week 1/Task 1 OctoMos mint", octomos_mint),
+            Choice(f"CSZN Week 1/Task 2 Clutch mint", clutchai_mint),
             # Choice(f"Week 1/Task 2 [Main] Game Boom Proof", game_boom_proof),
             # Choice(f"Week 1/Task 2 [Bonus] Game Boom Mint", game_boom_mint),
             # Choice(f"Week 1/Task 3 [Main] Nidum mint", nidum_mint),

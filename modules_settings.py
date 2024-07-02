@@ -616,6 +616,21 @@ async def octomos_mint(wallet_info):
     week6_inst = CSZN_week1(wallet_info)
     return await week6_inst.octomos_mint()
 
+
+async def clutchai_mint(wallet_info):
+    """
+    Task 2
+
+    urls - list of urls
+    """
+
+    urls = [
+        'https://ipfs.clutchplay.ai/ipfs/QmVFuTcAKYFHZJBVoDhWRiio5985xtQfGDrZEgPjyFMkBL'
+    ]  # ['url1', 'url2', 'url3']
+
+    week6_inst = CSZN_week1(wallet_info)
+    return await week6_inst.clutchai_mint(urls)
+
 ########################################################################
 #                             Checker                                  #
 ########################################################################
