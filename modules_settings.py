@@ -604,6 +604,17 @@ async def arenagames_mint(wallet_info):
     week6_inst = Week6(wallet_info)
     return await week6_inst.arenagames_mint()
 
+########################################################################
+#                             Week 1 (CZN)                             #
+########################################################################
+
+
+async def octomos_mint(wallet_info):
+    """
+    Task 1
+    """
+    week6_inst = CSZN_week1(wallet_info)
+    return await week6_inst.octomos_mint()
 
 ########################################################################
 #                             Checker                                  #

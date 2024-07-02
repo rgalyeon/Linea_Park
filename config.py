@@ -66,6 +66,9 @@ with open('data/abi/arenagames/abi.json', 'r') as file:
 with open('data/abi/layerbank/abi.json', 'r') as file:
     LAYERBANK_ABI = json.load(file)
 
+with open('data/abi/octomos/abi.json', 'r') as file:
+    OCTOMOS_ABI = json.load(file)
+
 
 ZERO_ADDRESS = "0x0000000000000000000000000000000000000000"
 LAYERBANK_CONTRACT = "0x43Eac5BFEa14531B8DE0B334E123eA98325de866"
@@ -95,6 +98,7 @@ WARRIOR_CONTRACT = "0x184e5677890c5add563de785ff371f6c188d3db6"
 BILINEAR_CONTRACT = "0xA091303966Ef5F94Cf68F85d892c729fd6c3F30B"
 IMAGINEAI_CONTRACT = "0xb99e5534d42500eb1d5820fba3bb8416ccb76396"
 ARENAGAMES_CONTRACT = "0xbd0ef89f141680b9b2417e4384fdf73cfc696f9f"
+OCTOMOS_CONTRACT = "0xBcFa22a36E555c507092FF16c1af4cB74B8514C8"
 
 
 LINEA_TOKENS = {
