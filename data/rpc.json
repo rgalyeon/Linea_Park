@@ -77,7 +77,6 @@
   "linea": {
     "rpc": [
       "https://linea.drpc.org",
-      "https://1rpc.io/linea",
       "https://rpc.linea.build"
     ],
     "explorer": "https://lineascan.build/tx/",

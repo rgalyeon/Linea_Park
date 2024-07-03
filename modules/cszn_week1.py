@@ -5,7 +5,8 @@ from utils.gas_checker import check_gas
 from utils.helpers import retry, quest_checker
 from .account import Account
 from config import (OCTOMOS_CONTRACT, OCTOMOS_ABI,
-                    CRAZYGANG_CONTRACT, CRAZYGANG_ABI)
+                    CRAZYGANG_CONTRACT, CRAZYGANG_ABI,
+                    MINTPAD_CONTRACT, MINTPAD_ABI)
 
 
 class CSZN_week1(Account):
@@ -55,6 +56,41 @@ class CSZN_week1(Account):
             transaction = await contract.functions.safeMint(
                 self.address,
                 link
+            ).build_transaction(tx_data)
+
+            signed_tx = await self.sign(transaction)
+            tnx_hash = await self.send_raw_transaction(signed_tx)
+            await self.wait_until_tx_finished(tnx_hash.hex())
+        else:
+            logger.info(f"[{self.account_id}][{self.address}] Already Minted")
+
+    @retry
+    @check_gas
+    async def mintpad_mint(self):
+        logger.info(f"[{self.account_id}][{self.address}] Start Push Mint")
+        contract = self.get_contract(MINTPAD_CONTRACT, MINTPAD_ABI)
+
+        _tokenId = 0
+        _quantity = 1
+        _currency = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE"
+        _pricePerToken = 0
+        _limitPerWallet = 2
+
+        n_nfts = await contract.functions.balanceOf(self.address, _tokenId).call()
+        if n_nfts == 0:
+            tx_data = await self.get_tx_data(value=self.w3.to_wei(0.0000029, 'ether'))
+            transaction = await contract.functions.claim(
+                self.address,
+                _tokenId,
+                _quantity,
+                _currency,
+                _pricePerToken,
+                [
+                 [b'\x00' * 32],
+                 _limitPerWallet,
+                 _pricePerToken,
+                 _currency],
+                b""
             ).build_transaction(tx_data)
 
             signed_tx = await self.sign(transaction)

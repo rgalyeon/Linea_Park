@@ -631,6 +631,17 @@ async def clutchai_mint(wallet_info):
     week6_inst = CSZN_week1(wallet_info)
     return await week6_inst.clutchai_mint(urls)
 
+
+async def mintpad_mint(wallet_info):
+    """
+    Task 3
+
+    mintpad mint
+    """
+
+    week6_inst = CSZN_week1(wallet_info)
+    return await week6_inst.mintpad_mint()
+
 ########################################################################
 #                             Checker                                  #
 ########################################################################
