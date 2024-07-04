@@ -6,7 +6,8 @@ from utils.helpers import retry, quest_checker
 from .account import Account
 from config import (OCTOMOS_CONTRACT, OCTOMOS_ABI,
                     CRAZYGANG_CONTRACT, CRAZYGANG_ABI,
-                    MINTPAD_CONTRACT, MINTPAD_ABI)
+                    MINTPAD_CONTRACT, MINTPAD_ABI,
+                    WIZARDS_CONTRACT, WIZARDS_ABI)
 
 
 class CSZN_week1(Account):
@@ -92,6 +93,23 @@ class CSZN_week1(Account):
                  _currency],
                 b""
             ).build_transaction(tx_data)
+
+            signed_tx = await self.sign(transaction)
+            tnx_hash = await self.send_raw_transaction(signed_tx)
+            await self.wait_until_tx_finished(tnx_hash.hex())
+        else:
+            logger.info(f"[{self.account_id}][{self.address}] Already Minted")
+
+    @retry
+    @check_gas
+    async def wizards_mint(self):
+        logger.info(f"[{self.account_id}][{self.address}] Start Wizards Mint")
+        contract = self.get_contract(WIZARDS_CONTRACT, WIZARDS_ABI)
+
+        n_nfts = await contract.functions.balanceOf(self.address).call()
+        if n_nfts == 0:
+            tx_data = await self.get_tx_data()
+            transaction = await contract.functions.mintEfficientN2M_001Z5BWH().build_transaction(tx_data)
 
             signed_tx = await self.sign(transaction)
             tnx_hash = await self.send_raw_transaction(signed_tx)
