@@ -651,6 +651,15 @@ async def wizards_mint(wallet_info):
     week6_inst = CSZN_week1(wallet_info)
     return await week6_inst.wizards_mint()
 
+
+async def efrogs_mint(wallet_info):
+    """
+    Task 5
+    """
+
+    week6_inst = CSZN_week1(wallet_info)
+    return await week6_inst.efrogs_mint()
+
 ########################################################################
 #                             Checker                                  #
 ########################################################################
