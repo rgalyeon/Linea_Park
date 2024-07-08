@@ -50,7 +50,9 @@ def get_module():
             Choice(f"CSZN Week 1/Task 2 Clutch mint", clutchai_mint),
             Choice(f"CSZN Week 1/Task 3 Push mint", mintpad_mint),
             Choice(f"CSZN Week 1/Task 4 Wizards mint", wizards_mint),
-            Choice(f"CSZN Week 1/Task 5 Efrogs mint", efrogs_mint),
+            Choice(f"CSZN Week 1/Task 5 Efrogs mint\n", efrogs_mint),
+
+            Choice(f"CSZN Week 2/Task 1 Satoshi Universe mint", satoshi_mint),
             # Choice(f"Week 1/Task 2 [Main] Game Boom Proof", game_boom_proof),
             # Choice(f"Week 1/Task 2 [Bonus] Game Boom Mint", game_boom_mint),
             # Choice(f"Week 1/Task 3 [Main] Nidum mint", nidum_mint),
@@ -136,8 +138,8 @@ def main(module):
     if RANDOM_WALLET:
         random.shuffle(wallets_data)
 
-    if CHECK_QUESTS_PROGRESS:
-        LineaScan(wallets_data).get_wallet_progress()
+    # if CHECK_QUESTS_PROGRESS:
+    #     LineaScan(wallets_data).get_wallet_progress()
 
     with ThreadPoolExecutor(max_workers=QUANTITY_THREADS) as executor:
         for _, wallet_data in enumerate(wallets_data, start=1):

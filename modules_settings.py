@@ -613,8 +613,8 @@ async def octomos_mint(wallet_info):
     """
     Task 1
     """
-    week6_inst = CSZN_week1(wallet_info)
-    return await week6_inst.octomos_mint()
+    week1_inst = CSZN_week1(wallet_info)
+    return await week1_inst.octomos_mint()
 
 
 async def clutchai_mint(wallet_info):
@@ -628,8 +628,8 @@ async def clutchai_mint(wallet_info):
         'https://ipfs.clutchplay.ai/ipfs/QmVFuTcAKYFHZJBVoDhWRiio5985xtQfGDrZEgPjyFMkBL'
     ]  # ['url1', 'url2', 'url3']
 
-    week6_inst = CSZN_week1(wallet_info)
-    return await week6_inst.clutchai_mint(urls)
+    week1_inst = CSZN_week1(wallet_info)
+    return await week1_inst.clutchai_mint(urls)
 
 
 async def mintpad_mint(wallet_info):
@@ -639,8 +639,8 @@ async def mintpad_mint(wallet_info):
     mintpad mint
     """
 
-    week6_inst = CSZN_week1(wallet_info)
-    return await week6_inst.mintpad_mint()
+    week1_inst = CSZN_week1(wallet_info)
+    return await week1_inst.mintpad_mint()
 
 
 async def wizards_mint(wallet_info):
@@ -648,8 +648,8 @@ async def wizards_mint(wallet_info):
     Task 4
     """
 
-    week6_inst = CSZN_week1(wallet_info)
-    return await week6_inst.wizards_mint()
+    week1_inst = CSZN_week1(wallet_info)
+    return await week1_inst.wizards_mint()
 
 
 async def efrogs_mint(wallet_info):
@@ -657,8 +657,21 @@ async def efrogs_mint(wallet_info):
     Task 5
     """
 
-    week6_inst = CSZN_week1(wallet_info)
-    return await week6_inst.efrogs_mint()
+    week1_inst = CSZN_week1(wallet_info)
+    return await week1_inst.efrogs_mint()
+
+########################################################################
+#                             Week 2 (CZN)                             #
+########################################################################
+
+
+async def satoshi_mint(wallet_info):
+    """
+    Task 1
+    """
+
+    week2_inst = CSZN_week2(wallet_info)
+    return await week2_inst.satoshi_universe_mint()
 
 ########################################################################
 #                             Checker                                  #

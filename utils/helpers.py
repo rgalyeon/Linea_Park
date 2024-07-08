@@ -39,6 +39,7 @@ def remove_wallet(private_key: str):
 def quest_checker(func):
     @wraps(func)
     async def wrapper(*args, **kwargs):
+        CHECK_QUESTS_PROGRESS = False
         if CHECK_QUESTS_PROGRESS:
             with transaction_lock:
                 progress = pd.read_excel(PROGRESS_PATH, index_col=0)
