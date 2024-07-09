@@ -9,6 +9,7 @@ import pandas as pd
 from tqdm import tqdm
 import time
 import os
+from config import (ELEMENT_CONTRACT, SATOSHI_UNIVERSE_CONTRACT, EFROGS_CONTRACT)
 
 
 class LineaScan:
@@ -42,10 +43,12 @@ class LineaScan:
     def parse_transactions(transactions: List[Dict], wallet, df: pd.DataFrame):
         df.loc[wallet, :] = False
         for tx in transactions:
-            if tx['to'] == '0xf4AA97cDE2686Bc5ae2Ee934a8E5330B8B13Be64'.lower():
+            if tx['to'] == EFROGS_CONTRACT.lower():
                 df.loc[wallet, 'W1 Task 5'] = True
-            elif tx['to'] == '0xc0A2a606913A49a0B0a02F682C833EFF3829B4bA'.lower():
+            elif tx['to'] == SATOSHI_UNIVERSE_CONTRACT.lower():
                 df.loc[wallet, 'W2 Task 1'] = True
+            elif tx['to'] == ELEMENT_CONTRACT.lower() and '1ffca9db' in tx['input']:
+                df.loc[wallet, 'W2 Task 2'] = True
 
     def wait_transactions(self, address, all_proxies):
         n_attemps = 10
@@ -64,7 +67,7 @@ class LineaScan:
             return
         logger.info('Check quests progress from blockchain data')
 
-        cols = ['W1 Task 5', 'W2 Task 1']
+        cols = ['W1 Task 5', 'W2 Task 1', 'W2 Task 2']
 
         df = pd.DataFrame(columns=cols)
         all_proxies = [wallet_info['proxy'] for wallet_info in self.wallets_data]

@@ -673,6 +673,15 @@ async def satoshi_mint(wallet_info):
     week2_inst = CSZN_week2(wallet_info)
     return await week2_inst.satoshi_universe_mint()
 
+
+async def linus_mint(wallet_info):
+    """
+    Task 2
+    """
+
+    week2_inst = CSZN_week2(wallet_info)
+    return await week2_inst.linus_mint()
+
 ########################################################################
 #                             Checker                                  #
 ########################################################################
