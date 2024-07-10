@@ -76,12 +76,11 @@
   },
   "linea": {
     "rpc": [
-      "https://linea.drpc.org",
       "https://rpc.linea.build"
     ],
     "explorer": "https://lineascan.build/tx/",
     "token": "ETH",
-    "eip1559": false,
+    "eip1559": true,
     "chain_id": 59144
   },
   "zora": {
