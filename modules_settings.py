@@ -691,6 +691,15 @@ async def yooldo_mint(wallet_info):
     week2_inst = CSZN_week2(wallet_info)
     return await week2_inst.yooldo_mint()
 
+
+async def frog_wars_mint(wallet_info):
+    """
+    Task 4
+    """
+
+    week2_inst = CSZN_week2(wallet_info)
+    return await week2_inst.frog_wars_mint()
+
 ########################################################################
 #                             Checker                                  #
 ########################################################################

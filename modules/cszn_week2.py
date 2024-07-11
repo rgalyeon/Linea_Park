@@ -72,3 +72,20 @@ class CSZN_week2(Account):
             await self.wait_until_tx_finished(txn_hash.hex())
         else:
             logger.info(f"[{self.account_id}][{self.address}] Already Minted")
+
+    @retry
+    @check_gas
+    async def frog_wars_mint(self):
+        logger.info(f"[{self.account_id}][{self.address}] Start Frog Wars Mint")
+        contract = self.get_contract("0x32DeC694570ce8EE6AcA08598DaEeA7A3e0168A3", WIZARDS_ABI)
+
+        n_nfts = await contract.functions.balanceOf(self.address).call()
+        if n_nfts == 0:
+            tx_data = await self.get_tx_data()
+            transaction = await contract.functions.mintEfficientN2M_001Z5BWH().build_transaction(tx_data)
+
+            signed_tx = await self.sign(transaction)
+            tnx_hash = await self.send_raw_transaction(signed_tx)
+            await self.wait_until_tx_finished(tnx_hash.hex())
+        else:
+            logger.info(f"[{self.account_id}][{self.address}] Already Minted")
