@@ -56,6 +56,7 @@ def get_module():
             Choice(f"CSZN Week 2/Task 2 Linus Eggs mint", linus_mint),
             Choice(f"CSZN Week 2/Task 3 Yooldo mint", yooldo_mint),
             Choice(f"CSZN Week 2/Task 4 Frog Wars mint", frog_wars_mint),
+            Choice(f"CSZN Week 2/Task 5 ACG mint", acg_mint),
             # Choice(f"Week 1/Task 2 [Main] Game Boom Proof", game_boom_proof),
             # Choice(f"Week 1/Task 2 [Bonus] Game Boom Mint", game_boom_mint),
             # Choice(f"Week 1/Task 3 [Main] Nidum mint", nidum_mint),

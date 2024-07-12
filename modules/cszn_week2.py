@@ -89,3 +89,21 @@ class CSZN_week2(Account):
             await self.wait_until_tx_finished(tnx_hash.hex())
         else:
             logger.info(f"[{self.account_id}][{self.address}] Already Minted")
+
+    @retry
+    @check_gas
+    async def acg_mint(self):
+        logger.info(f"[{self.account_id}][{self.address}] Start ACG Mint")
+        nft_contract = self.get_contract("0xEf31F7A35a21c43EF4ab2e1aC3F93116d3b38346", WIZARDS_ABI)
+        n_nfts = await nft_contract.functions.balanceOf(self.address).call()
+        if n_nfts == 0:
+            tx_data = await self.get_tx_data()
+
+            tx_data['to'] = self.w3.to_checksum_address('0x057b0080120D89aE21cC622db34f2d9Ae9fF2BDE')
+            tx_data['data'] = '0x1249c58b'
+
+            signed_txn = await self.sign(tx_data)
+            txn_hash = await self.send_raw_transaction(signed_txn)
+            await self.wait_until_tx_finished(txn_hash.hex())
+        else:
+            logger.info(f"[{self.account_id}][{self.address}] Already Minted")

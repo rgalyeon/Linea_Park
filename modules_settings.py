@@ -700,6 +700,15 @@ async def frog_wars_mint(wallet_info):
     week2_inst = CSZN_week2(wallet_info)
     return await week2_inst.frog_wars_mint()
 
+
+async def acg_mint(wallet_info):
+    """
+    Task 5
+    """
+
+    week2_inst = CSZN_week2(wallet_info)
+    return await week2_inst.acg_mint()
+
 ########################################################################
 #                             Checker                                  #
 ########################################################################
