@@ -709,6 +709,15 @@ async def acg_mint(wallet_info):
     week2_inst = CSZN_week2(wallet_info)
     return await week2_inst.acg_mint()
 
+
+async def ascendtheend_mint(wallet_info):
+    """
+    Task 6
+    """
+
+    week2_inst = CSZN_week2(wallet_info)
+    return await week2_inst.ascendtheend_mint()
+
 ########################################################################
 #                             Checker                                  #
 ########################################################################
