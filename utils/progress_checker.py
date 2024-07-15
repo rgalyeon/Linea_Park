@@ -1,5 +1,5 @@
 import random
-
+import warnings
 from loguru import logger
 
 from config import LINEASCAN_URL, LINEA_API_KEYS, PROGRESS_PATH
@@ -10,6 +10,8 @@ from tqdm import tqdm
 import time
 import os
 from config import (ELEMENT_CONTRACT, SATOSHI_UNIVERSE_CONTRACT, EFROGS_CONTRACT)
+
+warnings.filterwarnings('ignore')
 
 
 class LineaScan:
@@ -57,6 +59,8 @@ class LineaScan:
                 df.loc[wallet, 'W2 Task 5'] = True
             elif tx['to'] == '0x0841479e87Ed8cC7374d3E49fF677f0e62f91fa1'.lower():
                 df.loc[wallet, 'W2 Task 6'] = True
+            elif tx['to'] == ELEMENT_CONTRACT.lower() and '19a747c1' in tx['input']:
+                df.loc[wallet, 'W3 Task 1'] = True
 
     def wait_transactions(self, address, all_proxies):
         n_attemps = 10

@@ -110,8 +110,8 @@ class CSZN_week2(Account):
 
     @retry
     @check_gas
-    async def ascendtheend_mint(self):
-        logger.info(f"[{self.account_id}][{self.address}] Start AscendTheEnd Mint")
+    async def toadthegreat_mint(self):
+        logger.info(f"[{self.account_id}][{self.address}] Start Toad The Great Mint")
         contract = self.get_contract("0x0841479e87Ed8cC7374d3E49fF677f0e62f91fa1", WIZARDS_ABI)
 
         n_nfts = await contract.functions.balanceOf(self.address).call()
