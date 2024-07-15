@@ -71,7 +71,7 @@
     ],
     "explorer": "https://scrollscan.com/tx/",
     "token": "ETH",
-    "eip1559": false,
+    "eip1559": true,
     "chain_id": 534352
   },
   "linea": {
