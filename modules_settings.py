@@ -740,6 +740,15 @@ async def sendingme_mint(wallet_info):
     week3_inst = CSZN_week3(wallet_info)
     return await week3_inst.sendingme_mint()
 
+
+async def cszn_townstory_mint(wallet_info):
+    """
+    Task 3
+    """
+
+    week3_inst = CSZN_week3(wallet_info)
+    return await week3_inst.townstory_mint()
+
 ########################################################################
 #                             Checker                                  #
 ########################################################################
