@@ -71,3 +71,20 @@ class CSZN_week3(Account):
             await self.wait_until_tx_finished(tnx_hash.hex())
         else:
             logger.info(f"[{self.account_id}][{self.address}] Already Minted")
+
+    @retry
+    @check_gas
+    async def danielle_zosavac_mint(self):
+        logger.info(f"[{self.account_id}][{self.address}] Start Danielle Zosavac mint")
+        contract = self.get_contract("0x3A21e152aC78f3055aA6b23693FB842dEFdE0213", WIZARDS_ABI)
+
+        n_nfts = await contract.functions.balanceOf(self.address).call()
+        if n_nfts == 0:
+            tx_data = await self.get_tx_data()
+            transaction = await contract.functions.mintEfficientN2M_001Z5BWH().build_transaction(tx_data)
+
+            signed_tx = await self.sign(transaction)
+            tnx_hash = await self.send_raw_transaction(signed_tx)
+            await self.wait_until_tx_finished(tnx_hash.hex())
+        else:
+            logger.info(f"[{self.account_id}][{self.address}] Already Minted")

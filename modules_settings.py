@@ -749,6 +749,15 @@ async def cszn_townstory_mint(wallet_info):
     week3_inst = CSZN_week3(wallet_info)
     return await week3_inst.townstory_mint()
 
+
+async def danielle_zosavac_mint(wallet_info):
+    """
+    Task 4
+    """
+
+    week3_inst = CSZN_week3(wallet_info)
+    return await week3_inst.danielle_zosavac_mint()
+
 ########################################################################
 #                             Checker                                  #
 ########################################################################
