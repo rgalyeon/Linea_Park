@@ -2,7 +2,8 @@ from loguru import logger
 from utils.gas_checker import check_gas
 from utils.helpers import retry
 from .account import Account
-from config import (ELEMENT_CONTRACT, ELEMENT_ABI, WIZARDS_ABI)
+from config import (ELEMENT_CONTRACT, ELEMENT_ABI, WIZARDS_ABI,
+                    DEMMORTAL_CONTRACT, DEMMORTAL_ABI)
 
 
 class CSZN_week3(Account):
@@ -82,6 +83,31 @@ class CSZN_week3(Account):
         if n_nfts == 0:
             tx_data = await self.get_tx_data()
             transaction = await contract.functions.mintEfficientN2M_001Z5BWH().build_transaction(tx_data)
+
+            signed_tx = await self.sign(transaction)
+            tnx_hash = await self.send_raw_transaction(signed_tx)
+            await self.wait_until_tx_finished(tnx_hash.hex())
+        else:
+            logger.info(f"[{self.account_id}][{self.address}] Already Minted")
+
+    @retry
+    @check_gas
+    async def demmortal_mint(self):
+        logger.info(f"[{self.account_id}][{self.address}] Start Demmortal mint")
+        contract = self.get_contract(DEMMORTAL_CONTRACT, DEMMORTAL_ABI)
+
+        id_ = 0
+        amount = 1
+
+        n_nfts = await contract.functions.balanceOf(self.address, id_).call()
+        if n_nfts == 0:
+            tx_data = await self.get_tx_data()
+            transaction = await contract.functions.mint(
+                self.address,
+                id_,
+                amount,
+                b''
+            ).build_transaction(tx_data)
 
             signed_tx = await self.sign(transaction)
             tnx_hash = await self.send_raw_transaction(signed_tx)

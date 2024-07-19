@@ -758,6 +758,15 @@ async def danielle_zosavac_mint(wallet_info):
     week3_inst = CSZN_week3(wallet_info)
     return await week3_inst.danielle_zosavac_mint()
 
+
+async def demmortal_mint(wallet_info):
+    """
+    Task 5
+    """
+
+    week3_inst = CSZN_week3(wallet_info)
+    return await week3_inst.demmortal_mint()
+
 ########################################################################
 #                             Checker                                  #
 ########################################################################

@@ -63,6 +63,7 @@ def get_module():
             Choice(f"CSZN Week 3/Task 2 SendingMe mint", sendingme_mint),
             Choice(f"CSZN Week 3/Task 3 Townstory mint", cszn_townstory_mint),
             Choice(f"CSZN Week 3/Task 4 Danielle Zosavac mint", danielle_zosavac_mint),
+            Choice(f"CSZN Week 3/Task 5 Demmortal mint", demmortal_mint),
             # Choice(f"Week 1/Task 2 [Main] Game Boom Proof", game_boom_proof),
             # Choice(f"Week 1/Task 2 [Bonus] Game Boom Mint", game_boom_mint),
             # Choice(f"Week 1/Task 3 [Main] Nidum mint", nidum_mint),
