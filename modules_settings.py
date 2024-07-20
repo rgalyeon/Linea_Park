@@ -767,6 +767,15 @@ async def demmortal_mint(wallet_info):
     week3_inst = CSZN_week3(wallet_info)
     return await week3_inst.demmortal_mint()
 
+
+async def foxy_mint(wallet_info):
+    """
+    Task 6
+    """
+
+    week3_inst = CSZN_week3(wallet_info)
+    return await week3_inst.foxy_mint()
+
 ########################################################################
 #                             Checker                                  #
 ########################################################################

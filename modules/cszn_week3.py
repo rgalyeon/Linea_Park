@@ -114,3 +114,28 @@ class CSZN_week3(Account):
             await self.wait_until_tx_finished(tnx_hash.hex())
         else:
             logger.info(f"[{self.account_id}][{self.address}] Already Minted")
+
+    @retry
+    @check_gas
+    async def foxy_mint(self):
+        logger.info(f"[{self.account_id}][{self.address}] Start Foxy Mint")
+        launchpad_contract = self.get_contract(ELEMENT_CONTRACT, ELEMENT_ABI)
+        nft_contract = self.get_contract('0x56223A633B78DCcF6926c4734B2447a4b2018CcE', WIZARDS_ABI)
+
+        n_nfts = await nft_contract.functions.balanceOf(self.address).call()
+        if n_nfts == 0:
+            tx_data = await self.get_tx_data()
+            transaction = await launchpad_contract.functions.launchpadBuy(
+                '0x0c21cfbb',
+                '0x2968bd75',
+                0,
+                1,
+                [],
+                b''
+            ).build_transaction(tx_data)
+
+            signed_tx = await self.sign(transaction)
+            tnx_hash = await self.send_raw_transaction(signed_tx)
+            await self.wait_until_tx_finished(tnx_hash.hex())
+        else:
+            logger.info(f"[{self.account_id}][{self.address}] Already Minted")

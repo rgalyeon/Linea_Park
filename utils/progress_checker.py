@@ -69,6 +69,8 @@ class LineaScan:
                 df.loc[wallet, 'W3 Task 4'] = True
             elif tx['to'] == '0x5A77B45B6f5309b07110fe98E25A178eEe7516c1'.lower():
                 df.loc[wallet, 'W3 Task 5'] = True
+            elif tx['to'] == ELEMENT_CONTRACT.lower() and '2968bd75' in tx['input']:
+                df.loc[wallet, 'W3 Task 6'] = True
 
     def wait_transactions(self, address, all_proxies):
         n_attemps = 10
@@ -88,7 +90,7 @@ class LineaScan:
         logger.info('Check quests progress from blockchain data')
 
         cols = ['W1 Task 5', 'W2 Task 1', 'W2 Task 2', 'W2 Task 3', 'W2 Task 4', 'W2 Task 5', 'W2 Task 6',
-                'W3 Task 1', 'W3 Task 2', 'W3 Task 3', 'W3 Task 4', 'W3 Task 5']
+                'W3 Task 1', 'W3 Task 2', 'W3 Task 3', 'W3 Task 4', 'W3 Task 5', 'W3 Task 6']
 
         df = pd.DataFrame(columns=cols)
         all_proxies = [wallet_info['proxy'] for wallet_info in self.wallets_data]
