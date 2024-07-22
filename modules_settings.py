@@ -776,6 +776,19 @@ async def foxy_mint(wallet_info):
     week3_inst = CSZN_week3(wallet_info)
     return await week3_inst.foxy_mint()
 
+
+########################################################################
+#                             Week 4 (CZN)                             #
+########################################################################
+
+async def cooprecords_mint(wallet_info):
+    """
+    Task 1
+    """
+
+    week4_inst = CSZN_week4(wallet_info)
+    return await week4_inst.cooprecords_mint()
+
 ########################################################################
 #                             Checker                                  #
 ########################################################################

@@ -16,3 +16,4 @@ from .layerbank import LayerBank
 from .cszn_week1 import CSZN_week1
 from .cszn_week2 import CSZN_week2
 from .cszn_week3 import CSZN_week3
+from .cszn_week4 import CSZN_week4
