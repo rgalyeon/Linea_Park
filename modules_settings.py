@@ -789,6 +789,15 @@ async def cooprecords_mint(wallet_info):
     week4_inst = CSZN_week4(wallet_info)
     return await week4_inst.cooprecords_mint()
 
+
+async def borja_moskv_mint(wallet_info):
+    """
+    Task 2
+    """
+
+    week4_inst = CSZN_week4(wallet_info)
+    return await week4_inst.borja_moskv_mint()
+
 ########################################################################
 #                             Checker                                  #
 ########################################################################

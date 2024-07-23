@@ -89,3 +89,79 @@ class CSZN_week4(Account):
             await self.wait_until_tx_finished(tnx_hash.hex())
         else:
             logger.info(f"[{self.account_id}][{self.address}] Already Minted")
+
+    @retry
+    @check_gas
+    async def borja_moskv_mint(self):
+        logger.info(f"[{self.account_id}][{self.address}] Start Borja Moskv Mint")
+        contract = self.get_contract("0x3f0A935c8f3Eb7F9112b54bD3b7fd19237E441Ee", COOPRECORDS_ABI)
+
+        id_ = 1
+
+        n_nfts = await contract.functions.balanceOf(self.address, id_).call()
+        if n_nfts == 0:
+
+            ua = UserAgent().getRandom
+            link = 'https://public-api.phosphor.xyz/v1/purchase-intents'
+            headers = {
+                'accept': '*/*',
+                'accept-language': 'uk',
+                'content-type': 'application/json',
+                'origin': 'https://app.phosphor.xyz',
+                'priority': 'u=1, i',
+                'referer': 'https://app.phosphor.xyz/',
+                'sec-ch-ua-mobile': '?0',
+                'sec-ch-ua-platform': ua["os"],
+                'sec-fetch-dest': 'empty',
+                'sec-fetch-mode': 'cors',
+                'sec-fetch-site': 'same-site',
+                "user-agent": ua['useragent']
+            }
+
+            data = {
+                "buyer": {"eth_address": self.address},
+                "listing_id": "849e42a7-45dd-4a5b-a895-f5496e46ade2",
+                "provider": "MINT_VOUCHER",
+                "quantity": "1"}
+
+            timeout = aiohttp.ClientTimeout(total=2)
+            while True:
+                try:
+                    async with aiohttp.ClientSession() as session:
+
+                        async with session.post(link, data=json.dumps(data),
+                                                headers=headers,
+                                                proxy=self.proxy,
+                                                timeout=timeout) as response:
+                            if response.status in [200, 201]:
+                                response_data = await response.json()
+                                break
+                        await asyncio.sleep(0.4)
+                except aiohttp.ClientOSError as e:
+                    logger.warning(f"[{self.account_id}][{self.address}] Connection Reset error. Retry")
+                except asyncio.TimeoutError as e:
+                    pass
+
+            voucher = response_data['data']['voucher']
+            signature = response_data['data']['signature']
+            tx_data = await self.get_tx_data()
+            transaction = await contract.functions.mintWithVoucher(
+                [
+                    voucher['net_recipient'],
+                    voucher['initial_recipient'],
+                    int(voucher['initial_recipient_amount']),
+                    int(voucher['quantity']),
+                    int(voucher['nonce']),
+                    int(voucher['expiry']),
+                    int(voucher['price']),
+                    int(voucher['token_id']),
+                    voucher['currency']
+                ],
+                signature
+            ).build_transaction(tx_data)
+
+            signed_tx = await self.sign(transaction)
+            tnx_hash = await self.send_raw_transaction(signed_tx)
+            await self.wait_until_tx_finished(tnx_hash.hex())
+        else:
+            logger.info(f"[{self.account_id}][{self.address}] Already Minted")
