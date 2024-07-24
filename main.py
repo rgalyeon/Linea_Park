@@ -61,6 +61,7 @@ def get_module():
 
             Choice(f"CSZN Week 4/Task 1 Coop Records mint", cooprecords_mint),
             Choice(f"CSZN Week 4/Task 2 Coop Borja Moskv mint", borja_moskv_mint),
+            Choice(f"CSZN Week 4/Task 3 Forbidden Fruit mint", forbidden_fruit_mint),
             # Choice(f"Week 1/Task 2 [Main] Game Boom Proof", game_boom_proof),
             # Choice(f"Week 1/Task 2 [Bonus] Game Boom Mint", game_boom_mint),
             # Choice(f"Week 1/Task 3 [Main] Nidum mint", nidum_mint),

@@ -75,6 +75,8 @@ class LineaScan:
                 df.loc[wallet, 'W4 Task 1'] = True
             elif tx['to'] == "0x3f0A935c8f3Eb7F9112b54bD3b7fd19237E441Ee".lower():
                 df.loc[wallet, 'W4 Task 2'] = True
+            elif tx['to'] == "0x3EB78e881b28B71329344dF622Ea3A682538EC6a".lower():
+                df.loc[wallet, 'W4 Task 3'] = True
 
     def wait_transactions(self, address, all_proxies):
         n_attemps = 10
@@ -95,7 +97,7 @@ class LineaScan:
 
         cols = ['W1 Task 5', 'W2 Task 1', 'W2 Task 2', 'W2 Task 3', 'W2 Task 4', 'W2 Task 5', 'W2 Task 6',
                 'W3 Task 1', 'W3 Task 2', 'W3 Task 3', 'W3 Task 4', 'W3 Task 5', 'W3 Task 6',
-                'W4 Task 1', 'W4 Task 2']
+                'W4 Task 1', 'W4 Task 2', 'W4 Task 3']
 
         df = pd.DataFrame(columns=cols)
         all_proxies = [wallet_info['proxy'] for wallet_info in self.wallets_data]
