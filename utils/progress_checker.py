@@ -75,8 +75,10 @@ class LineaScan:
                 df.loc[wallet, 'W4 Task 1'] = True
             elif tx['to'] == "0x3f0A935c8f3Eb7F9112b54bD3b7fd19237E441Ee".lower():
                 df.loc[wallet, 'W4 Task 2'] = True
-            elif tx['to'] == "0x3EB78e881b28B71329344dF622Ea3A682538EC6a".lower():
+            elif tx['to'] == "0x3EB78e881b28B71329344dF622Ea3A682538EC6a".lower() and tx['input'][521] == '3':
                 df.loc[wallet, 'W4 Task 3'] = True
+            elif tx['to'] == "0x3EB78e881b28B71329344dF622Ea3A682538EC6a".lower() and tx['input'][521] == '1':
+                df.loc[wallet, 'W4 Task 4'] = True
 
     def wait_transactions(self, address, all_proxies):
         n_attemps = 10

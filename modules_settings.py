@@ -807,6 +807,15 @@ async def forbidden_fruit_mint(wallet_info):
     week4_inst = CSZN_week4(wallet_info)
     return await week4_inst.forbidden_fruit_mint()
 
+
+async def forbidden_fruit_crux_mint(wallet_info):
+    """
+    Task 4
+    """
+
+    week4_inst = CSZN_week4(wallet_info)
+    return await week4_inst.forbidden_fruit_crux_mint()
+
 ########################################################################
 #                             Checker                                  #
 ########################################################################
