@@ -65,6 +65,8 @@ def get_module():
             Choice(f"CSZN Week 4/Task 4 Forbidden Fruit mint - Crux", forbidden_fruit_crux_mint),
             Choice(f"CSZN Week 4/Task 5 Forbidden Fruit mint - Stonez the Organic",
                    forbidden_fruit_stonez_the_organic_mint),
+            Choice(f"CSZN Week 4/Task 6 Forbidden Fruit mint - Laurent Bellue",
+                   forbidden_fruit_laurent_bellue_mint),
 
             # Linea Park Quests
             # Choice(f"Week 1/Task 2 [Main] Game Boom Proof", game_boom_proof),

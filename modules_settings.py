@@ -825,6 +825,15 @@ async def forbidden_fruit_stonez_the_organic_mint(wallet_info):
     week4_inst = CSZN_week4(wallet_info)
     return await week4_inst.forbidden_fruit_stonez_the_organic_mint()
 
+
+async def forbidden_fruit_laurent_bellue_mint(wallet_info):
+    """
+    Task 6
+    """
+
+    week4_inst = CSZN_week4(wallet_info)
+    return await week4_inst.forbidden_fruit_laurent_bellue_mint()
+
 ########################################################################
 #                             Checker                                  #
 ########################################################################
