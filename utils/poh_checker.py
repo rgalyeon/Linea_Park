@@ -57,7 +57,10 @@ class PohChecker:
         df.loc[wallet, :] = False
         df.loc[wallet, 'PoH'] = poh_info['poh']
         for attest in poh_info['attestations']:
-            attest_name = self.attest_names[attest['issuerSlugName']]
+            try:
+                attest_name = self.attest_names[attest['issuerSlugName']]
+            except KeyError:
+                attest_name = attest['issuerSlugName']
             df.loc[wallet, attest_name] = attest['validated']
 
     def check_attest(self):
