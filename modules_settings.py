@@ -219,10 +219,13 @@ async def deposit_layerbank(wallet_info):
     min_percent = 5
     max_percent = 35
 
+    save_on_wallet = 0.005
+
     layerbank_inst = LayerBank(wallet_info)
     await layerbank_inst.router(
         min_amount, max_amount, decimal, sleep_from, sleep_to, make_withdraw, all_amount, min_percent, max_percent,
-        required_amount_for_withdraw=required_amount_for_withdraw
+        required_amount_for_withdraw=required_amount_for_withdraw,
+        save_on_wallet=save_on_wallet
     )
 
 

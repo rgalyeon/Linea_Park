@@ -21,7 +21,8 @@ class LayerBank(Account):
                      all_amount,
                      min_percent,
                      max_percent,
-                     required_amount_for_withdraw):
+                     required_amount_for_withdraw,
+                     save_on_wallet):
 
         amount_wei, amount, balance = await self.get_amount(
             "ETH",
@@ -33,6 +34,12 @@ class LayerBank(Account):
             max_percent
         )
 
+        amount -= save_on_wallet
+        amount_wei -= self.w3.to_wei(save_on_wallet, "ether")
+
+        if amount < 0:
+            logger.warning(f"[{self.account_id}][{self.address}] Amount < 0; Check save_on_wallet parameter")
+            return
         await self.deposit(amount_wei, amount, balance)
         if make_withdraw:
             await sleep(sleep_from, sleep_to)
