@@ -39,6 +39,7 @@ def get_module():
             Choice(f"{next(counter)}) Withdraw from OKX", withdraw_okx),
             Choice(f"{next(counter)}) Transfer to OKX", transfer_to_okx),
             Choice(f"{next(counter)}) Bridge Orbiter", bridge_orbiter),
+            Choice(f"{next(counter)}) Bridge CrossCurve", bridge_crosscurve),
             Choice(f"{next(counter)}) Use custom routes", custom_routes),
             Choice(f"{next(counter)}) Quest progress checker (need proxy)", progress_check),
             Choice(f"{next(counter)}) PoH checker (need proxy)", poh_check),
@@ -59,14 +60,14 @@ def get_module():
             # Choice(f"CSZN Week 2/Task 5 ACG mint", acg_mint),
             # Choice(f"CSZN Week 2/Task 6 Toad The Great mint\n", toadthegreat_mint),
 
-            Choice(f"CSZN Week 4/Task 1 Coop Records mint", cooprecords_mint),
-            Choice(f"CSZN Week 4/Task 2 Coop Borja Moskv mint", borja_moskv_mint),
-            Choice(f"CSZN Week 4/Task 3 Forbidden Fruit mint - JT", forbidden_fruit_mint),
-            Choice(f"CSZN Week 4/Task 4 Forbidden Fruit mint - Crux", forbidden_fruit_crux_mint),
-            Choice(f"CSZN Week 4/Task 5 Forbidden Fruit mint - Stonez the Organic",
-                   forbidden_fruit_stonez_the_organic_mint),
-            Choice(f"CSZN Week 4/Task 6 Forbidden Fruit mint - Laurent Bellue",
-                   forbidden_fruit_laurent_bellue_mint),
+            # Choice(f"CSZN Week 4/Task 1 Coop Records mint", cooprecords_mint),
+            # Choice(f"CSZN Week 4/Task 2 Coop Borja Moskv mint", borja_moskv_mint),
+            # Choice(f"CSZN Week 4/Task 3 Forbidden Fruit mint - JT", forbidden_fruit_mint),
+            # Choice(f"CSZN Week 4/Task 4 Forbidden Fruit mint - Crux", forbidden_fruit_crux_mint),
+            # Choice(f"CSZN Week 4/Task 5 Forbidden Fruit mint - Stonez the Organic",
+            #        forbidden_fruit_stonez_the_organic_mint),
+            # Choice(f"CSZN Week 4/Task 6 Forbidden Fruit mint - Laurent Bellue",
+            #        forbidden_fruit_laurent_bellue_mint),
 
             # Linea Park Quests
             # Choice(f"Week 1/Task 2 [Main] Game Boom Proof", game_boom_proof),
@@ -171,6 +172,9 @@ if __name__ == '__main__':
 
     print(HEADER)
     print("Author – https://t.me/block_nine\n")
+
+    if sys.platform == 'win32':
+        asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 
     if SAVE_LOGS:
         logger.add('logs.txt', filter=filter_out_utils)

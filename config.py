@@ -87,6 +87,9 @@ with open('data/abi/mintpad/abi2.json', 'r') as file:
 with open('data/abi/cooprecords/abi.json', 'r') as file:
     COOPRECORDS_ABI = json.load(file)
 
+with open('data/abi/crosscurve/abi.json', 'r') as file:
+    CROSSCURVE_ABI = json.load(file)
+
 ZERO_ADDRESS = "0x0000000000000000000000000000000000000000"
 LAYERBANK_CONTRACT = "0x43Eac5BFEa14531B8DE0B334E123eA98325de866"
 LAYERBANK_WETH_CONTRACT = "0x9E9aec6a296f94C8530e2dD01FF3E9c61555D39a"
